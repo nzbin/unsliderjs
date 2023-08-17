@@ -1,1 +1,1 @@
-# unslider-js
+# unsliderjs
