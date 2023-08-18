@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unslider Test</title>
+  <link href="../dist/unslider.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div class="my-slider">
+      <ul>
+        <li>My slide</li>
+        <li>Another slide</li>
+        <li>My last slide</li>
+      </ul>
+    </div>
+
+    <div class="my-slider2">
+      <ul>
+        <li>
+          <img src="https://farm1.staticflickr.com/313/31812080833_297acfbbd9_z.jpg" alt="">
+        </li>
+        <li>
+          <img src="https://farm4.staticflickr.com/3804/33589584740_b0fbdcd4aa_z.jpg" alt="">
+        </li>
+        <li>
+          <img src="https://farm1.staticflickr.com/470/31340603494_fb7228020d_z.jpg" alt="">
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="../dist/unslider.js"></script>
+  <script>
+    new Unslider('.my-slider', {
+      animation: 'vertical',
+      autoplay: true,
+      infinite: true
+    });
+
+    new Unslider('.my-slider2', {
+      animateHeight: true
+    });
+  </script>
+</body>
+
+</html>
