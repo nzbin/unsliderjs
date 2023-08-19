@@ -1,5 +1,5 @@
 import {
-  D,
+  D as $,
   Event,
   addClass,
   after,
@@ -32,42 +32,40 @@ import {
   wrapAll,
 } from 'domq.js/src/domq.modular';
 
-const $ = D;
-
 const methods = {
   isFunction,
   Event,
 };
 
 const fnMethods = {
-  find,
-  not,
+  attr,
   css,
-  clone,
+  find,
   filter,
+  not,
   children,
+  parent,
+  siblings,
   wrap,
   wrapAll,
   addClass,
   removeClass,
   hasClass,
-  attr,
+  clone,
   before,
   after,
   insertAfter,
   insertBefore,
   append,
   remove,
-  parent,
-  siblings,
   width,
   height,
   position,
   on,
   off,
+  trigger,
   anim,
   animate,
-  trigger
 };
 
 $.extend(methods);

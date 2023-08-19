@@ -1222,43 +1222,42 @@ function animate(properties, duration, ease, callback, delay) {
   return this.anim(properties, duration, ease, callback, delay);
 }
 
-var $ = D;
 var methods = {
   isFunction: isFunction,
   Event: Event
 };
 var fnMethods = {
-  find: find,
-  not: not,
+  attr: attr,
   css: css,
-  clone: clone,
+  find: find,
   filter: filter,
+  not: not,
   children: children,
+  parent: parent,
+  siblings: siblings,
   wrap: wrap,
   wrapAll: wrapAll,
   addClass: addClass,
   removeClass: removeClass,
   hasClass: hasClass,
-  attr: attr,
+  clone: clone,
   before: before,
   after: after,
   insertAfter: insertAfter,
   insertBefore: insertBefore,
   append: append,
   remove: remove,
-  parent: parent,
-  siblings: siblings,
   width: width,
   height: height,
   position: position,
   on: on,
   off: off,
+  trigger: trigger,
   anim: anim,
-  animate: animate,
-  trigger: trigger
+  animate: animate
 };
-$.extend(methods);
-$.fn.extend(fnMethods);
+D.extend(methods);
+D.fn.extend(fnMethods);
 
 var Unslider = /*#__PURE__*/function () {
   function Unslider(el, options) {
@@ -1370,7 +1369,7 @@ var Unslider = /*#__PURE__*/function () {
     _defineProperty(this, "prev", function () {
       return _this.animate(_this.current - 1, 'prev');
     });
-    this.$context = $(el);
+    this.$context = D(el);
     this.init(options);
   }
 
@@ -1381,7 +1380,7 @@ var Unslider = /*#__PURE__*/function () {
       var _this2 = this;
       // Set up our options inside here so we can re-init at
       // any time
-      this.options = $.extend({}, this.defaults, options);
+      this.options = D.extend({}, this.defaults, options);
 
       // Our elements
       this.$container = this.$context.find(this.options.selectors.container).first().addClass(this.prefix + 'wrap');
@@ -1392,7 +1391,7 @@ var Unslider = /*#__PURE__*/function () {
 
       // We want to keep this script as small as possible
       // so we'll optimise some checks
-      $.each(['nav', 'arrows', 'keys', 'infinite'], function (index, module) {
+      D.each(['nav', 'arrows', 'keys', 'infinite'], function (index, module) {
         _this2.options[module] && _this2['init' + _this2._ucfirst(module)]();
       });
 
@@ -1484,7 +1483,7 @@ var Unslider = /*#__PURE__*/function () {
     key: "initNav",
     value: function initNav() {
       var _this4 = this;
-      var $nav = $('<nav class="' + this.prefix + 'nav"><ol /></nav>');
+      var $nav = D('<nav class="' + this.prefix + 'nav"><ol /></nav>');
 
       // Build our click navigation item-by-item
       this.$slides.each(function (key, slide) {
@@ -1493,7 +1492,7 @@ var Unslider = /*#__PURE__*/function () {
         var label = slide.getAttribute('data-nav') || key + 1;
 
         // Listen to any callback functions
-        if ($.isFunction(_this4.options.nav)) {
+        if (D.isFunction(_this4.options.nav)) {
           label = _this4.options.nav.call(_this4.$slides.eq(key), key, label);
         }
 
@@ -1508,7 +1507,7 @@ var Unslider = /*#__PURE__*/function () {
       // for any click events on the generated links
       this.$nav.find('li').on('click' + this.eventSuffix, function (e) {
         // Cache our link and set it to be active
-        var $me = $(e.target).addClass(_this4.options.activeClass);
+        var $me = D(e.target).addClass(_this4.options.activeClass);
 
         // Set the right active class, remove any other ones
         $me.siblings().removeClass(_this4.options.activeClass);
@@ -1529,9 +1528,9 @@ var Unslider = /*#__PURE__*/function () {
       }
 
       // Loop our options object and bind our events
-      $.each(this.options.arrows, function (key, val) {
+      D.each(this.options.arrows, function (key, val) {
         // Add our arrow HTML and bind it
-        _this5.$arrows.push($(val).insertAfter(_this5.$context).on('click' + _this5.eventSuffix, _this5[key]));
+        _this5.$arrows.push(D(val).insertAfter(_this5.$context).on('click' + _this5.eventSuffix, _this5[key]));
       });
     }
 
@@ -1544,10 +1543,10 @@ var Unslider = /*#__PURE__*/function () {
       if (this.options.keys === true) {
         this.options.keys = this.defaults.keys;
       }
-      $(document).on('keyup' + this.eventSuffix, function (e) {
-        $.each(_this6.options.keys, function (key, val) {
+      D(document).on('keyup' + this.eventSuffix, function (e) {
+        D.each(_this6.options.keys, function (key, val) {
           if (e.which === val) {
-            $.isFunction(_this6[key]) && _this6[key].call(_this6);
+            D.isFunction(_this6[key]) && _this6[key].call(_this6);
           }
         });
       });
@@ -1602,7 +1601,7 @@ var Unslider = /*#__PURE__*/function () {
     value: function initInfinite() {
       var _this8 = this;
       var pos = ['first', 'last'];
-      $.each(pos, function (index, item) {
+      D.each(pos, function (index, item) {
         _this8.$slides.push.apply(_this8.$slides,
         // Exclude all cloned slides and call .first() or .last()
         // depending on what `item` is.
@@ -1627,7 +1626,7 @@ var Unslider = /*#__PURE__*/function () {
   }, {
     key: "destroyArrows",
     value: function destroyArrows() {
-      $.each(this.$arrows, function (i, $arrow) {
+      D.each(this.$arrows, function (i, $arrow) {
         $arrow.remove();
       });
     }
@@ -1646,7 +1645,7 @@ var Unslider = /*#__PURE__*/function () {
     key: "destroyKeys",
     value: function destroyKeys() {
       // Remove the event handler
-      $(document).off('keyup' + this.eventSuffix);
+      D(document).off('keyup' + this.eventSuffix);
     }
   }, {
     key: "setIndex",
@@ -1694,7 +1693,7 @@ var Unslider = /*#__PURE__*/function () {
 
       // Make sure it's a valid animation method, otherwise we'll get
       // a load of bug reports that'll be really hard to report
-      if ($.isFunction(this[fn])) {
+      if (D.isFunction(this[fn])) {
         this[fn](this.current, dir);
       }
       return this;
@@ -1858,12 +1857,12 @@ var Unslider = /*#__PURE__*/function () {
 // They're both just helpful types of shorthand for
 // anything that might take too long to write out or
 // something that might be used more than once.
-$.fn._active = function (className) {
+D.fn._active = function (className) {
   return this.addClass(className).siblings().removeClass(className);
 };
-$.fn._move = function () {
+D.fn._move = function () {
   // this.stop(true, true);
-  return $.fn[$.fn.velocity ? 'velocity' : 'animate'].apply(this, arguments);
+  return D.fn[D.fn.velocity ? 'velocity' : 'animate'].apply(this, arguments);
 };
 
 module.exports = Unslider;

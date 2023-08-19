@@ -596,6 +596,4 @@ $.fn._move = function () {
   return $.fn[$.fn.velocity ? 'velocity' : 'animate'].apply(this, arguments);
 };
 
-window.Unslider = Unslider;
-
 export default Unslider;

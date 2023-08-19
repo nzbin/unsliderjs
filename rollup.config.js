@@ -18,9 +18,9 @@ export default [
     input: 'src/js/unslider.js',
     output: [
       {
-        name: 'unslider',
-        banner,
         file: 'dist/unslider.js',
+        name: 'Unslider',
+        banner,
         format: 'umd'
       },
       {
