@@ -1,11 +1,10 @@
 @use './variables' as *;
 
 @if ($unslider-dot-navigation) {
-  .#{$unslider-namespace}-nav, %#{$unslider-namespace}-nav {
-    ol {
-      list-style: none;
-      text-align: center;
 
+  .#{$unslider-namespace}-nav,
+  %#{$unslider-namespace}-nav {
+    >ol {
       li {
         display: inline-block;
         width: 6px;

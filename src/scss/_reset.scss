@@ -1,6 +1,7 @@
 @use './variables' as *;
 
-.#{$unslider-namespace}, %#{$unslider-namespace} {
+.#{$unslider-namespace},
+%#{$unslider-namespace} {
   // Should either be relative or absolute as long as it's not static,
   // but we'll set it using jQuery
   // position: relative;
@@ -18,7 +19,7 @@
 
   // Vertical sliders don't float left
   &-vertical {
-    > ul {
+    >ul {
       height: 100%;
     }
 
@@ -53,7 +54,6 @@
     // Reset any weird spacing
     margin: 0;
     padding: 0;
-    border: none;
   }
 
   &-arrow {
@@ -65,6 +65,17 @@
     &.next {
       left: auto;
       right: 20px;
+    }
+  }
+
+  &-nav {
+    >ol {
+      text-align: center;
+
+      li {
+        display: inline-block;
+        cursor: pointer;
+      }
     }
   }
 }
