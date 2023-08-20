@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  -webkit-font-smoothing: antialiased;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  text-decoration: none;
+  border: 0;
+}
+
+.wrap {
+  width: 940px;
+  margin: 0 auto;
+}
+
+.vertical {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+img {
+  -ms-interpolation-mode: nearest-neighbor;
+
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+html, body {
+  height: 100%;
+}
