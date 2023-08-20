@@ -244,7 +244,7 @@ class Unslider {
     // for any click events on the generated links
     this.$nav.find('li').on('click' + this.eventSuffix, (e) => {
       // Cache our link and set it to be active
-      const $me = $(e.target).addClass(this.options.activeClass);
+      const $me = $(e.currentTarget).addClass(this.options.activeClass);
 
       // Set the right active class, remove any other ones
       $me.siblings().removeClass(this.options.activeClass);
