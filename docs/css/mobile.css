@@ -1,0 +1,196 @@
+h1, h2 {
+  font-size: 32px;
+  line-height: 40px;
+}
+h1 br {
+  display: none;
+}
+
+body > .unslider > .unslider-nav {
+  display: none;
+}
+
+.sidebar {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  z-index: 10;
+}
+
+.cta .download {
+  display: none;
+}
+
+.wrap, #demos .wrap, dt, #methods h1 + p, #download p,
+#welcome .actions, #welcome .actions div,
+#demos img, #demos .fading-slider .unslider-wrap, #demos .fading-slider li {
+  width: 100%;
+}
+
+#methods h1 + p, #download p {
+  padding-bottom: 0;
+}
+
+.vertical {
+  position: static;
+
+  -ms-transform: none;
+  transform: none;
+}
+
+.spaced {
+  margin: 0;
+  padding: 0;
+}
+
+dl {
+  position: static;
+}
+dt, dd {
+  padding: 20px 30px;
+}
+dt {
+  left: 0;
+  top: 0;
+}
+dt em {
+  right: 30px;
+  text-align: right;
+}
+dd {
+  top: -64px;
+  margin-bottom: -64px;
+  padding-top: 60px;
+}
+
+main {
+  overflow: visible !important;
+}
+main > .unslider-wrap {
+  left: 0 !important;
+}
+main > ul, main > .unslider-wrap.unslider-carousel > li {
+  width: 100% !important;
+  height: auto !important;
+}
+
+main > .unslider-wrap.unslider-carousel > li {
+  float: none;
+  clear: both;
+  margin-bottom: 40px;
+  padding: 75px 30px 20px;
+}
+
+#welcome h1 {
+  margin: 0 0 30px;
+}
+
+#welcome .actions {
+  margin: 20px 0;
+}
+#welcome .actions pre {
+  padding: 16px 25px;
+  margin-bottom: 0;
+
+  font-size: 11px;
+  line-height: 18px;
+}
+#welcome .actions div {
+  float: none;
+}
+#welcome .actions .download {
+  display: none;
+}
+
+#demos .demo {
+  padding: 10px 0;
+}
+#demos .demo > div {
+  padding: 25px;
+}
+#demos .fading-slider,
+#demos .fading-slider .unslider-wrap, #demos .fading-slider li {
+  position: relative;
+  height: 200px;
+}
+#demos img, #demos .fading-slider li {
+  position: absolute;
+}
+#demos img {
+  -webkit-user-drag: none;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+
+  height: auto;
+}
+
+
+#setup h2 em {
+  float: right;
+  margin: 0;
+}
+
+#setup .unslider-arrow, #demos .unslider-arrow {
+  right: 16px;
+}
+#setup .unslider-arrow.prev, #demos .unslider-arrow.prev {
+  left: 16px;
+}
+#setup pre + p {
+  margin: -15px 0 30px;
+}
+
+#setup .unslider, #setup .install-steps, #setup .install-steps ul, #setup .install-steps ul li {
+  height: auto;
+}
+
+#methods {
+  max-height: 1000px;
+  overflow: auto;
+
+  padding-left: 0;
+  padding-right: 0;
+}
+#methods hgroup {
+  position: static;
+}
+#methods h2 {
+  margin: 40px 0 12px;
+}
+#methods hgroup, #methods h2, #methods .wrap > p {
+  padding: 0 30px;
+}
+#methods pre {
+  padding: 15px 22px;
+
+  font-size: 11px;
+  line-height: 18px;
+}
+#methods .wrap > pre {
+  /*width: 100%;*/
+  margin: 15px 30px 0;
+}
+
+#download {
+  min-height: 100%;
+}
+#download .wrap {
+  padding-bottom: 40px;
+}
+#download h2 + .btn {
+  margin-top: 0;
+}
+#download .btn {
+  display: block;
+  clear: both;
+  margin: 30px 0 0;
+
+  text-align: center;
+}
+#download .btn + .btn {
+  margin: 16px 0 0;
+}
+#download .secondary {
+  padding: 8px 22px;
+}

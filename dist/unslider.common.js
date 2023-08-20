@@ -1370,6 +1370,12 @@ var Unslider = /*#__PURE__*/function () {
       return _this.animate(_this.current - 1, 'prev');
     });
     this.$context = D(el);
+
+    // Make sure the slider can only be initialized once
+    if (this.$context.attr('data-' + this._) != null) {
+      return;
+    }
+    this.$context.attr('data-' + this._, 'true');
     this.init(options);
   }
 
@@ -1507,7 +1513,7 @@ var Unslider = /*#__PURE__*/function () {
       // for any click events on the generated links
       this.$nav.find('li').on('click' + this.eventSuffix, function (e) {
         // Cache our link and set it to be active
-        var $me = D(e.target).addClass(_this4.options.activeClass);
+        var $me = D(e.currentTarget).addClass(_this4.options.activeClass);
 
         // Set the right active class, remove any other ones
         $me.siblings().removeClass(_this4.options.activeClass);

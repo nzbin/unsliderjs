@@ -43,7 +43,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  border: none;
 }
 .unslider-arrow {
   position: absolute;
@@ -55,26 +54,12 @@
   left: auto;
   right: 20px;
 }
-
-.unslider-nav ol {
-  list-style: none;
+.unslider-nav > ol {
   text-align: center;
 }
-.unslider-nav ol li {
+.unslider-nav > ol li {
   display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin: 0 4px;
-  background: transparent;
-  border-radius: 5px;
-  overflow: hidden;
-  text-indent: -999em;
-  border: 2px solid #000;
   cursor: pointer;
-}
-.unslider-nav ol li.unslider-active {
-  background: #000;
-  cursor: default;
 }
 
 /*# sourceMappingURL=unslider.css.map */
