@@ -109,6 +109,12 @@ class Unslider {
   constructor(el, options) {
     this.$context = $(el);
 
+    // Make sure the slider can only be initialized once
+    if (this.$context.attr('data-' + this._) != null) {
+      return;
+    }
+    this.$context.attr('data-' + this._, 'true');
+
     this.init(options);
   }
 
