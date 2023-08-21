@@ -22,9 +22,15 @@ body > .unslider > .unslider-nav {
   display: none;
 }
 
-.wrap, #demos .wrap, dt, #methods h1 + p, #download p,
-#welcome .actions, #welcome .actions div,
-#demos img, #demos .fading-slider .unslider-wrap, #demos .fading-slider li {
+.wrap, #demos .wrap,
+dt,
+#methods h1 + p,
+#download p,
+#welcome .actions,
+#welcome .actions div,
+#demos img,
+#demos .fading-slider .unslider-wrap,
+#demos .fading-slider li {
   width: 100%;
 }
 
@@ -34,8 +40,6 @@ body > .unslider > .unslider-nav {
 
 .vertical {
   position: static;
-
-  -ms-transform: none;
   transform: none;
 }
 
@@ -92,7 +96,6 @@ main > .unslider-wrap.unslider-carousel > li {
 #welcome .actions pre {
   padding: 16px 25px;
   margin-bottom: 0;
-
   font-size: 11px;
   line-height: 18px;
 }
@@ -110,7 +113,8 @@ main > .unslider-wrap.unslider-carousel > li {
   padding: 25px;
 }
 #demos .fading-slider,
-#demos .fading-slider .unslider-wrap, #demos .fading-slider li {
+#demos .fading-slider .unslider-wrap,
+#demos .fading-slider li {
   position: relative;
   height: 200px;
 }
@@ -118,37 +122,39 @@ main > .unslider-wrap.unslider-carousel > li {
   position: absolute;
 }
 #demos img {
-  -webkit-user-drag: none;
+  height: auto;
   top: 50%;
   transform: translateY(-50%) translateX(-50%);
-
-  height: auto;
+  -webkit-user-drag: none;
 }
-
 
 #setup h2 em {
   float: right;
   margin: 0;
 }
 
-#setup .unslider-arrow, #demos .unslider-arrow {
+#setup .unslider-arrow,
+#demos .unslider-arrow {
   right: 16px;
 }
-#setup .unslider-arrow.prev, #demos .unslider-arrow.prev {
+#setup .unslider-arrow.prev,
+#demos .unslider-arrow.prev {
   left: 16px;
 }
 #setup pre + p {
   margin: -15px 0 30px;
 }
 
-#setup .unslider, #setup .install-steps, #setup .install-steps ul, #setup .install-steps ul li {
+#setup .unslider,
+#setup .install-steps,
+#setup .install-steps ul,
+#setup .install-steps ul li {
   height: auto;
 }
 
 #methods {
   max-height: 1000px;
   overflow: auto;
-
   padding-left: 0;
   padding-right: 0;
 }
@@ -158,17 +164,17 @@ main > .unslider-wrap.unslider-carousel > li {
 #methods h2 {
   margin: 40px 0 12px;
 }
-#methods hgroup, #methods h2, #methods .wrap > p {
+#methods hgroup,
+#methods h2,
+#methods .wrap > p {
   padding: 0 30px;
 }
 #methods pre {
   padding: 15px 22px;
-
   font-size: 11px;
   line-height: 18px;
 }
 #methods .wrap > pre {
-  /*width: 100%;*/
   margin: 15px 30px 0;
 }
 
@@ -185,7 +191,6 @@ main > .unslider-wrap.unslider-carousel > li {
   display: block;
   clear: both;
   margin: 30px 0 0;
-
   text-align: center;
 }
 #download .btn + .btn {

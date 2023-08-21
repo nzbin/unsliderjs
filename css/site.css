@@ -8,45 +8,42 @@ body {
   background: #21272c;
 }
 
-body, input, textarea {
+body,
+input,
+textarea {
   font: 15px/25px "Whitney HTF", Whitney, "Alegreya Sans", Lato, sans-serif;
-  /*font-size-adjust: 0.475;*/
   text-shadow: 0 1px 3px rgba(0,0,0,.15);
-
   color: #787b80;
 }
 body.uses-google-fonts,
-body.uses-google-fonts input, body.uses-google-fonts textarea {
+body.uses-google-fonts input,
+body.uses-google-fonts textarea {
   font-size: 16px;
 }
 
-code, pre, .mono {
+code,
+pre,
+.mono {
   font-size: 75%;
   font-family: "Droid Sans Mono", "Anonymous Pro", Cousine, Consolas, monospace;
-
   tab-size: 4;
 }
-code, .adjustable {
+code,
+.adjustable {
   padding: 0 3px;
-
   background: #f8fbff;
   color: #69768b;
-
   border-radius: 2px;
 }
 pre {
   clear: both;
   margin: 20px 0 30px;
   padding: 16px 25px;
-
   box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
   border-radius: 5px;
-
   background: #434449;
   background: rgba(12,24,36,.2);
-
   overflow-x: auto;
-
   color: #fff;
   font-size: 12px;
   text-shadow: 0 1px 2px rgba(0,0,0,.1);
@@ -63,18 +60,20 @@ pre .adjustable {
   background: rgba(0,0,0,.2);
 }
 
-p a, main ul ol a, dl a {
+p a,
+main ul ol a,
+dl a {
   padding: 0 4px 1px;
   margin: 0 2px -1px;
-
   color: #fff;
   background: rgba(0,0,0,.01);
   border-bottom: 1px solid rgba(255,255,255,.2);
-
   border-radius: 2px;
   transition: .2s;
 }
-p a:hover, main ul ol a:hover, dl a:hover {
+p a:hover,
+main ul ol a:hover,
+dl a:hover {
   border-color: transparent;
   background: rgba(255,255,255,.2);
 }
@@ -83,14 +82,11 @@ p a:hover, main ul ol a:hover, dl a:hover {
   display: inline-block;
   padding: 0 6px;
   margin-right: 8px;
-
   background: #fff96d;
   color: #b59823;
   text-shadow: 0 1px 0 rgba(255,255,255,.1);
-
   border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
-
   font-size: 11px;
   line-height: 18px;
   text-shadow: none;
@@ -103,10 +99,8 @@ p a:hover, main ul ol a:hover, dl a:hover {
   padding: 4px 22px;
   border-radius: 30px;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
-
   background: #fff;
   color: #171b1f;
-
   font-size: 14px;
   font-weight: 600;
   text-shadow: none;
@@ -122,7 +116,8 @@ p a:hover, main ul ol a:hover, dl a:hover {
 .btn + .btn {
   margin-left: 20px;
 }
-.btn.primary, .btn.download {
+.btn.primary,
+.btn.download {
   background: #19263b;
   background: rgba(25,38,59,.4);
   color: #fff;
@@ -139,9 +134,7 @@ p a:hover, main ul ol a:hover, dl a:hover {
 .amp {
   position: relative;
   top: 1px;
-
   padding-right: 2px;
-
   font-family: "Adobe Caslon Pro", Baskerville, Garamond, serif;
   font-style: italic;
   font-size: 110%;
@@ -158,16 +151,13 @@ h1 {
 h1 em {
   padding: 0 6px;
   margin: 0 -2px;
-
   color: #d7fbff;
   background: rgba(0,0,0,.05);
   border-radius: 6px;
-
   font-style: normal;
 }
 h2 {
   padding-bottom: 20px;
-
   font-size: 40px;
   line-height: 52px;
 }
@@ -175,16 +165,12 @@ h2 {
 input {
   width: 100%;
   padding: 12px 24px;
-
   border: none;
   border-radius: 6px;
   outline: none;
-
   background: rgba(0,0,0,.3);
   color: #fff;
-
   font-size: 16px;
-
   box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 0 rgba(255,255,255,.05);
   transition: box-shadow .2s, background .2s;
 }
@@ -199,14 +185,12 @@ input:placeholder { color: rgba(255,255,255,.5) }
 #manual {
   position: relative;
   top: -15px;
-
   text-align: center;
 }
 
 dl {
   padding: 40px 0;
   position: relative;
-
   font-size: 16px;
   line-height: 24px;
 }
@@ -230,7 +214,6 @@ dt {
   top: 12px;
   left: 20px;
   width: 260px;
-
   font-weight: bold;
 }
 dt code {
@@ -239,12 +222,9 @@ dt code {
 dt em {
   position: absolute;
   right: 0;
-
   width: 140px;
-
   font-weight: normal;
   font-style: normal;
-
   color: rgba(255,255,255,.6);
 }
 dt em a {
@@ -258,10 +238,8 @@ dd {
   display: block;
   margin-bottom: -24px;
   padding: 12px 20px 12px 300px;
-
   position: relative;
   top: -24px;
-
   border-bottom: 1px solid rgba(0,0,0,.05);
 }
 dd p {
@@ -273,7 +251,6 @@ dd p:last-child {
 dd code {
   background: rgba(255,255,255,.15);
   color: #fff;
-
   box-shadow: 0 2px 2px rgba(0,0,0,.05);
 }
 dd:nth-child(4n) {
@@ -287,10 +264,8 @@ dd:nth-child(4n) {
   height: calc(100% - 90px);
   margin-top: 90px;
   padding: 30px 0 auto;
-
   overflow: auto;
   transition: background-size .2s;
-
   background: radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0));
   background: radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0));
   background-repeat: no-repeat;
@@ -300,7 +275,8 @@ dd:nth-child(4n) {
   background-size: 100% 10px;
 }
 
-nav, .unslider-nav {
+nav,
+.unslider-nav {
   position: absolute;
   top: 50px;
   left: 60px;
@@ -310,7 +286,6 @@ nav, .unslider-nav {
 .unslider-nav {
   right: auto;
   z-index: 3;
-
   margin-left: 40px;
 }
 nav a[href="#welcome"] {
@@ -320,7 +295,6 @@ nav a[href="#welcome"]:before,
 nav a[href="#welcome"]:after {
   position: absolute;
   transition: top .2s cubic-bezier(.42,0,.58,1), opacity .3s;
-
   pointer-events: none;
   opacity: 0;
 }
@@ -334,7 +308,6 @@ nav a[href="#welcome"]:before {
   left: 50%;
   top: 100%;
   margin-left: -8px;
-
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-bottom: 4px solid rgba(28,35,59,.43);
@@ -343,20 +316,17 @@ nav a[href="#welcome"]:hover:before {
   top: 130%;
 }
 nav a[href="#welcome"]:after {
-  content: 'beta';
+  content: 'Welcome to Unsliderjs';
   position: absolute;
-  left: 0;
-  right: 10px;
+  left: -100%;
   top: 123%;
-
-  padding: 3px 0;
+  padding: 4px;
   border-radius: 3px;
-
   font-size: 10px;
   line-height: 12px;
   font-weight: bold;
   text-align: center;
-
+  white-space: nowrap;
   color: #fff;
   background: rgba(28,35,59,.35);
   box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.05);
@@ -364,11 +334,11 @@ nav a[href="#welcome"]:after {
 nav a[href="#welcome"]:hover:after {
   top: 150%;
 }
-.unslider-nav li {
-  float: left;
-}
 nav #logo {
   margin-right: 10px;
+}
+.unslider-nav li {
+  float: left;
 }
 .unslider .unslider-nav li {
   display: inline-block;
@@ -376,16 +346,12 @@ nav #logo {
   margin: -2px 0 0 32px;
   padding: 2px 18px;
   border-radius: 30px;
-
   color: #fff;
   color: rgba(255,255,255,.7);
-
   font-size: 13px;
   font-weight: 500;
-
   cursor: pointer;
   list-style: none;
-
   transition: color .2s, background .2s;
 }
 .uses-google-fonts .unslider .unslider-nav li {
@@ -395,7 +361,8 @@ nav #logo {
 body > .unslider > .unslider-nav li:first-child {
   display: none;
 }
-.unslider-nav li:hover, .unslider-nav li.unslider-active {
+.unslider-nav li:hover,
+.unslider-nav li.unslider-active {
   color: #fff;
 }
 .unslider-nav li:hover {
@@ -415,14 +382,11 @@ main {
   top: 16px;
   right: 16px;
   bottom: 16px;
-
   width: 100%;
   height: 100%;
   width: calc(100% - 32px);
   height: calc(100% - 32px);
-
   overflow: hidden;
-
   border-radius: 4px;
   box-shadow: 0 4px 16px rgba(0,0,0,.2);
 }
@@ -436,12 +400,9 @@ main > ul > li {
   width: 100%;
   height: 100%;
   padding: 100px 40px 40px;
-
   position: relative;
-
   border-radius: 4px;
   box-shadow: inset 0 3px 2px rgba(255,255,255,.02), inset 0 0 0 1px rgba(255,255,255,.08);
-
   color: #fff;
   background: linear-gradient(20deg, #9bc5c3, #555957);
 }
@@ -449,8 +410,6 @@ main > ol {
   position: fixed;
   left: 50%;
   bottom: 50px;
-
-  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   list-style: none;
 }
@@ -460,15 +419,11 @@ main.unslider > ol li {
   width: 10px;
   height: 10px;
   margin: 0 4px;
-
   text-indent: -999em;
   cursor: pointer;
-
   border: 2px solid rgba(255,255,255,.2);
   border-radius: 5px;
-
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.1);
-
   transition: .1s;
 }
 main > ol li:hover {
@@ -481,8 +436,8 @@ main > ol li.active {
 }
 
 /*
-	Individual slides
-*/
+ * Individual slides
+ */
 
 #welcome {
   background: #4fb8d9;
@@ -492,7 +447,6 @@ main > ol li.active {
   margin: 80px 0 50px;
 }
 #welcome .actions {
-  width: 1040px;
   margin: 50px -50px;
 }
 #welcome .actions pre {
@@ -508,7 +462,8 @@ main > ol li.active {
   width: 28%;
   margin-right: 0;
 }
-#welcome .actions p, #welcome .actions .btn {
+#welcome .actions p,
+#welcome .actions .btn {
   margin-bottom: 20px;
 }
 #welcome .actions p:first-child {
@@ -542,7 +497,6 @@ main > ol li.active {
   display: block;
   white-space: pre-line;
   padding: 0 0 0 20px;
-
   font-weight: bold;
   line-height: 24px;
   color: #fff;
@@ -550,35 +504,32 @@ main > ol li.active {
 #demos .unslider {
   overflow: visible;
 }
-#setup .unslider-arrow, #demos .unslider-arrow {
+#setup .unslider-arrow,
+#demos .unslider-arrow {
   display: block;
   width: 32px;
   height: 32px;
-
   top: 50%;
   right: -50px;
   left: auto;
   margin-top: -16px;
-
   overflow: hidden;
-
   background: rgba(0,0,0,.2) no-repeat 50% 50%;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAQCAQAAABuQZ3IAAAAi0lEQVR4AU3OISBEQQBAwS0AACS9NxqQgCZpkiYBVddFvWhAAUABAPQCAGC4g/0vTnrBqCfDIZl70J+kMUBPpEwT4FNXxBxz4F1HxHyr4EVTxBLb4EFNxEon4CJSlVNw9AcV9sC16h8osgke1P1ArgXwouVvdQq86ww/GQefusNf7kBviBlxpT8k+gL/Wox4r1d4MwAAAABJRU5ErkJggg==');
   background-size: 7px 11px;
-
   border-radius: 32px;
   text-indent: -999em;
-
   opacity: .6;
   transition: opacity .2s;
 }
-#setup .unslider-arrow:hover, #demos .unslider-arrow:hover {
+#setup .unslider-arrow:hover,
+#demos .unslider-arrow:hover {
   opacity: 1;
 }
-#setup .unslider-arrow.prev, #demos .unslider-arrow.prev {
+#setup .unslider-arrow.prev,
+#demos .unslider-arrow.prev {
   left: -50px;
   right: auto;
-  -ms-transform: rotate(-180deg);
   transform: rotate(-180deg);
 }
 #demos .demo {
@@ -588,13 +539,10 @@ main > ol li.active {
   position: relative;
   padding: 40px;
   margin-bottom: 50px;
-
   background: #fff;
   color: #666;
-
   text-align: center;
   text-shadow: none;
-
   border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0,0,0,.1);
 }
@@ -604,40 +552,41 @@ main > ol li.active {
 #demos .demo.vertical-slider-wrapper ul li {
   padding: 40px;
 }
-#demos .unslider-nav, #setup .unslider-nav {
+#demos .unslider-nav,
+#setup .unslider-nav {
   position: absolute;
   bottom: -35px;
   left: 0;
   right: 0;
   top: auto;
-
   margin: 0;
 }
 #setup .unslider-nav {
   bottom: 40px;
 }
-#demos .unslider-nav ol, #setup .unslider-nav ol {
+#demos .unslider-nav ol,
+#setup .unslider-nav ol {
   list-style: none;
   text-align: center;
 }
-#demos .unslider-nav ol li, #setup .unslider-nav ol li {
+#demos .unslider-nav ol li,
+#setup .unslider-nav ol li {
   display: inline-block;
   float: none;
   width: 6px;
   height: 6px;
   margin: 0 4px;
   padding: 3px;
-
   background: transparent;
   border-radius: 5px;
   overflow: hidden;
   text-indent: -999em;
   border: 2px solid #fff;
   cursor: pointer;
-
   opacity: .4;
 }
-#demos .unslider-nav ol li.unslider-active, #setup .unslider-nav ol li.unslider-active {
+#demos .unslider-nav ol li.unslider-active,
+#setup .unslider-nav ol li.unslider-active {
   background: #fff;
   cursor: default;
   opacity: 1;
@@ -647,7 +596,10 @@ main > ol li.active {
   background: #d23c39;
   background: linear-gradient(-20deg, #d23c39, #dca74a);
 }
-#setup .unslider, #setup .install-steps, #setup .install-steps ul, #setup .install-steps ul li {
+#setup .unslider,
+#setup .install-steps,
+#setup .install-steps ul,
+#setup .install-steps ul li {
   height: 100%;
 }
 #setup .install-steps {
@@ -670,18 +622,15 @@ main > ol li.active {
   width: 32px;
   height: 32px;
   vertical-align: middle;
-
   font-size: 14px;
   line-height: 32px;
   font-weight: 600;
   font-style: normal;
   text-align: center;
-
   background: rgba(255,255,255,.8);
   color: #dca74a;
   text-shadow: none;
   box-shadow: 0 2px 3px rgba(0,0,0,.1);
-
   border-radius: 32px;
 }
 #setup .unslider-arrow {
@@ -710,13 +659,12 @@ main > ol li.active {
   background: #dc2430;
   background: linear-gradient(-20deg, #7b4397, #dc2430);
 }
-#methods h1 + p, #download p {
+#methods h1 + p,
+#download p {
   width: 600px;
   padding: 10px 0 35px;
-
   font-size: 21px;
   line-height: 30px;
-
   opacity: .7;
 }
 #download h2 {

@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>Unslider, the simplest carousel slider for JS</title>
+  <title>Unsliderjs, the simplest carousel slider for JS</title>
   <meta name="description"
-        content="Unslider is a super-simple slider with swipe, slide, Velocity.js and fade animation support.">
+        content="Unsliderjs is a super-simple slider with swipe, slide, and fade animation support.">
 
   <!-- CSS and other pretties -->
   <link rel="stylesheet" href="css/reset.css">
@@ -42,12 +42,11 @@
     <a href="#welcome">
       <img id="logo"
            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAwCAQAAAALQrSUAAABf0lEQVR4Ae3YsWrCUBTG8TsJhSo+h/oKRq2LYxuhS99JHRT6LqVvIU0QpXZNSxe11RL5dzhcUsiS4yUJhXxncLp8P+HilWNsaDEh4EjeOfLChBZGRj5qzDlTZM48cmUBNZ4oI8/UBLCgrMwxhjYxkhU+DUzO08BnhSSmbZgiCWliCpomIZKpIUDiYwocH0lgOCFpFAq4RnIy2JiCB0kFqAAV4B8Ahmz54F5dcEvEmq4rYMQ3AO9qQATAgZ4LwNbDWg3YgCVcCkjqd3TVAI9DQtAD3OplblIEBcC1Xmb4l6AB3OnrMxBG2QGRvj4D4S074BOrHjgD+lhAlB3wwJcjIV1/YKy5hAOSg33c6/d4ikuoIKjqFYAUQX8Zu8lpqdcA0t9h4/BT7Lk8RpYQXfwYea7PcY9XInw1YEzENsNzXP0jqgAVoAKUvKDYlb2iWSZLqqDQJVWAZGboECMJ8annXl7HJ0QS0yl3Ubmg/FVt+ctq7LSZEfJD3tmzZEbH9v4C97CdQB41GrUAAAAASUVORK5CYII="
-           width="32" height="24" title="Unslider" alt="Unslider logo">
+           width="32" height="24" alt="Unslider logo">
     </a>
 
     <div class="cta">
-      <a class="btn download" href="#download">Download Unslider</a>
-      <a class="btn github" href="http://github.com/nzbin/unsliderjs">Github</a>
+      <a class="btn github" target="_blank" href="http://github.com/nzbin/unsliderjs">Github</a>
     </div>
   </nav>
 
@@ -55,26 +54,28 @@
     <ul>
       <li id="welcome" data-nav="Welcome to Unslider">
         <div class="wrap vertical">
-          <h1>Unslider is an ultra-simple <br>jQuery slider for your website.</h1>
+          <h1>Unsliderjs is an ultra-simple <br>JS slider for your website.</h1>
 
           <div class="actions">
             <div class="instructions">
               <pre><span class="ghost">&lt;!-- The barebones HTML required for Unslider --&gt;</span>
 &lt;div class=&quot;banner&quot;&gt;
-    &lt;ul&gt;&lt;li&gt;This is my slider.&lt;/li&gt;&lt;li&gt;Pretty cool, huh?&lt;/li&gt;&lt;/ul&gt;
+    &lt;ul&gt;
+        &lt;li&gt;This is my slider.&lt;/li&gt;
+        &lt;li&gt;Pretty cool, huh?&lt;/li&gt;
+    &lt;/ul&gt;
 &lt;/div&gt;
 
 <span class="ghost">&lt;!-- And the relevant JavaScript --&gt;</span>
-&lt;script src=&quot;//code.jquery.com/jquery-2.1.4.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;/path/to/unslider.js&quot;&gt;&lt;/script&gt; <span class="ghost">&lt;!-- but with the right path! --&gt;</span>
-&lt;script&gt;$(function() { $(&apos;.banner&apos;).unslider() })&lt;/script&gt;</pre>
+&lt;script&gt;new Unslider(&apos;.banner&apos;)&lt;/script&gt;</pre>
             </div>
 
             <div class="download">
-              <p>To get started using Unslider, just download the repos:</p>
+              <p>To get started using Unsliderjs, just download the repos:</p>
 
               <a class="btn" href="#download">Download
-                <span>(version 2.0, 5.6kb)</span>
+                <span>(gzip ~8.7kb)</span>
               </a>
 
               <p>After more customisation or documentation? Try the navigation above (or below).
@@ -218,7 +219,8 @@
                 <p>Unslider uses a HTML element to wrap everything in, and puts all the slides
                   inside that as an <a
                      href="https://developer.mozilla.org/en/docs/Web/HTML/Element/ul">unordered
-                    list</a>.</p>
+                    list</a>.
+                </p>
                 <p>You can put any HTML you'd like inside each slide. Here's an example:</p>
 
                 <pre>&lt;div class=&quot;my-slider&quot;&gt;
@@ -233,18 +235,15 @@
 
             <li>
               <div class="wrap vertical">
-                <h2>Set up jQuery and Unslider.</h2>
-                <p>Add a reference to both jQuery and Unslider right before the closing
-                  <code>&lt;/body&gt;</code> tag - like below, but:
+                <h2>Set up Unslider.</h2>
+                <p>Import JS file:</p>
+                <pre>import Unslider from 'unsliderjs';</pre>
+
+                <p>Or add a reference to Unslider right before the closing
+                  <code>&lt;/body&gt;</code> tag - like below:
                 </p>
-                <ol>
-                  <li>Make sure jQuery is first! If not, you'll get an error.</li>
-                  <li>Make sure you put the right path to Unslider. If not, Unslider just won't
-                    work.</li>
-                </ol>
 
                 <pre><span class="ghost">&lt;!-- There'll be a load of other stuff here --&gt;</span>
-	&lt;script src=&quot;//code.jquery.com/jquery-2.1.4.min.js&quot;&gt;&lt;/script&gt;
 	&lt;script src=&quot;/path/to/unslider.js&quot;&gt;&lt;/script&gt; <span class="ghost">&lt;!-- but with the right path! --&gt;</span>
 <b class="adjustable">&lt;/body&gt;</b></pre>
               </div>
@@ -253,17 +252,25 @@
             <li>
               <div class="wrap vertical">
                 <h2>Set up Unslider’s CSS.</h2>
-                <p>In order to display properly, Unslider needs some styles applied to it. You can
-                  easily add them by linking to the <code>dist/css/unslider.css</code> file. If you
-                  want styled dots as well, link to <code>dist/css/unslider-dots.css</code> as well.
-                </p>
-                <p><span class="new">Note</span> By default, the colour of the styled dots is white.
-                  You can change this by compiling the LESS file and changing
-                  <code>variables.less</code> or manually editing anywhere it says
-                  <code>#fff</code>.
+                <p>In order to display properly, Unslider needs some styles applied to it. If you
+                  want styled dots as well, turn on the <code>$unslider-dot-navigation</code>.
                 </p>
 
+                <p><span class="new">Note</span> By default, the colour of the styled dots is black.
+                  You can change this by compiling the SCSS file and changing the
+                  <code>$unslider-dot-colour</code>.
+                </p>
+
+                <pre>@use 'unsliderjs' with (
+  $unslider-dot-navigation: true,
+  $unslider-dot-colour: #fff
+);</pre>
+
+                <p>You can also easily add them by linking to the <code>dist/css/unslider.css</code>
+                  file.</p>
+
                 <pre>&lt;link rel="stylesheet" href="<span class="ghost">/path/to/unslider</span>/dist/css/unslider.css"&gt;</pre>
+
               </div>
             </li>
 
@@ -274,14 +281,11 @@
                   (if you've got one) or straight in your HTML file (it doesn't matter either way!)
                   is tell Unslider what element we want to slide.</p>
                 <p>Since we added the HTML for a slider with a class of <code>my-slider</code>, we
-                  can use <code>$('.my-slider')</code> to target it.</p>
+                  can call the plugin as below.</p>
 
-                <pre><span class="ghost">	&lt;script src=&quot;//code.jquery.com/jquery-2.1.4.min.js&quot;&gt;&lt;/script&gt;
-	&lt;script src=&quot;/path/to/unslider.js&quot;&gt;&lt;/script&gt;</span>
+                <pre><span class="ghost">&lt;script src=&quot;/path/to/unslider.js&quot;&gt;&lt;/script&gt;</span>
 	&lt;script&gt;
-		jQuery(document).ready(function($) {
-			<b class="adjustable">$('.my-slider')</b>.unslider();
-		});
+	  new <b class="adjustable">Unslider('.my-slider')</b>;
 	&lt;/script&gt;
 <span class="ghost">&lt;/body&gt;</span></pre>
 
@@ -293,7 +297,7 @@
         </div>
 
         <script>
-         new Unslider('.install-steps', {
+          new Unslider('.install-steps', {
             animateHeight: true,
             arrows: true,
             nav: function (slide, index) {
@@ -316,9 +320,6 @@
             </hgroup>
 
             <h2>Automatic support</h2>
-            <p>Unslider automatically supports a few different scripts, provided the
-              <code>&lt;script&gt;</code> tag is referenced <b>before Unslider</b>.
-            </p>
 
             <dl>
               <dt>Right-to-left (RTL) support</dt>
@@ -328,64 +329,37 @@
 
                 <pre>&lt;div class="my-slider" dir="rtl"&gt;&lt;/div&gt;</pre>
               </dd>
-
-              <dt>Velocity.js <em><a href="http://julian.com/research/velocity/">visit site</a></em>
-              </dt>
-              <dd>
-                <p>A faster alternative to jQuery's <code>.animate()</code>. If you find your
-                  sliders are looking a bit sluggish, it's highly recommended to add Velocity, as it
-                  can make a marked improvement.</p>
-
-                <pre>&lt;script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"&gt;&lt;/script&gt;</pre>
-              </dd>
-
-              <dt>jquery.swipe.js <em><a href="http://stephband.info/jquery.event.swipe">visit
-                    site</a></em></dt>
-              <dd>
-                <p>Add swipe support for mobile and desktop to your sliders. See the
-                  <code>initSwipe</code> and <code>destroySwipe</code> methods below for more info
-                  on how this works.
-                </p>
-
-                <pre>&lt;script src="//stephband.info/jquery.event.move/js/jquery.event.move.js"&gt;&lt;/script&gt;
-&lt;script src="//stephband.info/jquery.event.swipe/js/jquery.event.swipe.js"&gt;&lt;/script&gt;</pre>
-              </dd>
             </dl>
 
             <h2>Methods</h2>
             <p>Unslider has a handful of methods you can use to control your slider and two ways you
               can use these methods, as shown below.</p>
             <pre><span class="ghost">//  Assuming we've got a variable set like this...
-var slider = $('.my-demo-slider').unslider();</span>
+var slider = new Unslider('.my-demo-slider');</span>
 
-<span class="ghost">// Method 1</span>
-slider.data('unslider').methodName();
-slider.data('unslider').methodName('arguments', 'go', 'here');
-
-<span class="ghost">// Method 2 (the shorthand version)</span>
-slider.unslider('methodName');
-slider.unslider('methodName:arguments,go,here');</pre>
+slider.methodName();
+slider.methodName('arguments', 'go', 'here');</pre>
 
             <dl>
               <dt>init <em>args: <code>options</code></em></dt>
               <dd>Set everything up with the slider. This is called automatically when you set up
-                <code>.unslider()</code> for the first time, but if there's layout problems or you
+                <code>new Unslider()</code> for the first time, but if there's layout problems or
+                you
                 want to re-initiate the slider for some reason, you can call it here. The
-                <code>options</code> variable is an object (see below). <b>You can't call options
-                  with the shorthand <code>.unslider('init')</code> method.</b>
+                <code>options</code> variable is an object (see below).
               </dd>
 
               <dt>calculateSlides</dt>
               <dd>If a slide gets added or removed, you should call this otherwise things'll
                 probably break.
 
-                <pre>var slider = $('.my-slider').unslider();
+                <pre>var slider = new Unslider('.my-slider');
 
 <span class="ghost">// I don't like this last slide, let's get rid of it</span>
-slider.find('li:last').remove();
+slider.$context.find('li').last().remove();
 
 <span class="ghost">// Let's recalculate Unslider so it knows what's going on</span>
-slider.unslider('calculateSlides');
+slider.calculateSlides();
 </pre>
               </dd>
 
@@ -396,15 +370,15 @@ slider.unslider('calculateSlides');
               <dt>stop</dt>
               <dd>Stop the slider moving itself between slides. Will stop any auto-playing.</dd>
 
-              <dt>destroyKeys</dt>
-              <dd>Remove any keyboard shortcut handlers for the slider.</dd>
-
               <dt>initKeys</dt>
               <dd>Manually add keyboard shortcut support. Can be used after <code>destroyKeys</code>
                 to restore keyboard shortcut support, or with <code>{keys: false}</code> in the
                 options object to add support later on.</dd>
 
-              <dt>initSwipe</dt>
+              <dt>destroyKeys</dt>
+              <dd>Remove any keyboard shortcut handlers for the slider.</dd>
+
+              <!-- <dt>initSwipe</dt>
               <dd>Set up swipe functionality manually (i.e if you want to defer loading). You can
                 add it automatically by including <a
                    href="http://stephband.info/jquery.event.swipe/">jquery.event.move and
@@ -429,7 +403,7 @@ $.getScript(scripts[1], function() {
               </dd>
 
               <dt>destroySwipe</dt>
-              <dd>Remove swipe support. Does what it says on the tin.</dd>
+              <dd>Remove swipe support. Does what it says on the tin.</dd> -->
 
               <dt>setIndex <em>args: <code>to</code></em></dt>
               <dd>
@@ -447,24 +421,24 @@ $.getScript(scripts[1], function() {
               <dt>animate <em>args: <code>to</code>, <code>dir</code></em></dt>
               <dd>
                 <p>Move the slider to a specific slide, update any navigation and fire a
-                  <code>unslider.change</code> event. Use like so:
+                  <code>unslider:change</code> event. Use like so:
                 </p>
 
                 <pre><span class="ghost">//  Our trusty slider!</span>
-var slider = $('.slider').unslider();
+var slider = new Unslider('.slider');
 
 <span class="ghost">//  Move to the first slide</span>
-slider.unslider('animate:first');
+slider.animate('first');
 
 <span class="ghost">//  Move to the third slide</span>
 <span class="ghost">//  Remember, slides are zero-indexed so 0 is first slide, 1 is second, etc.</span>
-slider.unslider('animate:2');
+slider.animate(2);
 
 <span class="ghost">//  Move to the last slide</span>
-slider.unslider('animate:last');
+slider.animate('last');
 
 <span class="ghost">//  Move to the last slide and add a direction</span>
-slider.unslider('animate:last,prev');</pre>
+slider.animate('last', 'prev');</pre>
 
                 <p>The argument <code>to</code> <b>is required</b> and can be an integer with the
                   index of the slide you want to set (remember: indexes start at zero!), or the
@@ -480,7 +454,7 @@ slider.unslider('animate:last,prev');</pre>
               </dd>
 
               <dt>prev</dt>
-              <dd>Same thing as <code>.unslider('next')</code> but in the other direction. Moves the
+              <dd>Same thing as <code>.next()</code> but in the other direction. Moves the
                 slider backwards manually or to the last slide if there's no more behind it.</dd>
             </dl>
 
@@ -489,23 +463,23 @@ slider.unslider('animate:last,prev');</pre>
               guess.</p>
 
             <pre><span class="ghost">//  Set up our slider to automatically move every second so we can see what's happening</span>
-var slider = $('.slider').unslider({ autoplay: true, delay: 1000 });
+var slider = new Unslider('.slider', { autoplay: true, delay: 1000 });
 
 <span class="ghost">//  When the slider has been set up, fire the event off.</span>
-slider.on('unslider.ready', function() {
-	alert('Slider is set up!');
+slider.$context.on('unslider:change', function(event, index, slide) {
+	alert('Slide has been changed to ' + index);
 });
 
-<span class="ghost">//  Listen to slide changes</span>
-slider.on('unslider.change', function(event, index, slide) {
-	alert('Slide has been changed to ' + index);
+<span class="ghost">//  Listen to slide moved</span>
+slider.$context.on('unslider:moved', function(event, index, slide) {
+	alert('Slide has been moved to ' + index);
 });</pre>
 
             <h2>Options</h2>
             <p>Unslider uses a standard jQuery plugin options object, which looks like the
               highlighted example below:</p>
 
-            <pre><span class="ghost">$('.my-demo-slider').unslider(</span>{
+            <pre><span class="ghost">new Unslider('.my-demo-slider', </span>{
 	settingName: settingValue,
 	anotherSetting: anotherValue
 }<span class="ghost">);</span></pre>
@@ -610,11 +584,11 @@ slider.on('unslider.change', function(event, index, slide) {
                 </p>
 
                 <pre>selectors: {
-	container: 'ul:first',
+	container: 'ul',
 	slides: 'li'
 }</pre>
                 <p><b>Note:</b> you'll probably also need to update/write custom CSS in order for
-                  Unslider to work. Check the source files for <code>unslider.less</code> to get a
+                  Unslider to work. Check the source files for <code>unslider.scss</code> to get a
                   better idea of what needs styling.</p>
               </dd>
 
@@ -637,17 +611,17 @@ slider.on('unslider.change', function(event, index, slide) {
           <p>The latest version of Unslider is open-source and available through GitHub. Any
             hotlinked versions may be out of date — make sure to use the latest downloadable
             version!</p>
-          <a class="btn big" href="http://github.com/idiot/unslider/archive/master.zip">Download
-            <span>unslider.min.js, 5.6kb</span></a>
-          <a class="btn big primary" href="http://github.com/idiot/unslider">View on Github</a>
+          <a class="btn big" href="http://github.com/nzbin/unsliderjs/archive/master.zip">Download
+            <span>unslider.min.js, 24kb</span></a>
+          <a class="btn big primary" href="http://github.com/nzbin/unsliderjs">View on Github</a>
 
           <h2>Problems and contributing</h2>
-          <a class="btn secondary" href="http://github.com/idiot/unslider/issues">Got any
+          <a class="btn secondary" href="http://github.com/nzbin/unsliderjs/issues">Got any
             problems?</a>
           <a class="btn secondary"
-             href="http://github.com/idiot/unslider/blob/master/contributing.md">Want to
+             href="http://github.com/nzbin/unsliderjs/blob/master/contributing.md">Want to
             contribute?</a>
-          <a class="btn secondary" href="http://gitter.im/idiot/unslider">Chat about Unslider</a>
+          <a class="btn secondary" href="http://gitter.im/nzbin/unsliderjs">Chat about Unslider</a>
           </h1>
       </li>
     </ul>
