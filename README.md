@@ -210,7 +210,7 @@ slider.methodName("arguments", "go", "here");
 
 - **prev()**
 
-  Same thing as `next()` but in the other direction. Moves the slider backwards manually or to the last slide if there's no more behind it.
+  Same thing as `.next()` but in the other direction. Moves the slider backwards manually or to the last slide if there's no more behind it.
 
 ## Events
 
