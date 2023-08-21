@@ -2,17 +2,23 @@
   "name": "unsliderjs",
   "version": "0.0.0",
   "description": "A very simple JS slider.",
-  "main": "",
-  "module": "",
-  "browser": "",
-  "types": "",
+  "main": "dist/unslider.common.js",
+  "module": "dist/unslider.esm.js",
+  "browser": "dist/unslider.js",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
     "src",
     "types",
     "_index.scss"
   ],
-  "keywords": [],
+  "keywords": [
+    "unslider",
+    "slider",
+    "carousel",
+    "lightweight",
+    "responsive"
+  ],
   "author": "nzbin",
   "license": "MIT",
   "homepage": "https://github.com/nzbin/unsliderjs",
