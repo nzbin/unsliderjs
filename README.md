@@ -26,7 +26,7 @@ $ npm install unsliderjs --save
 
 ```js
 // You can pass either CSS selector or HTML element for the first parameter
-new Unslider(selectorOrElement, options);
+new Unslider(selector_or_element, options);
 ```
 
 ### Include files
@@ -61,23 +61,23 @@ var unslider = new Unslider(".my-slider");
 
 ## Options
 
-- autoplay `false`
+- **autoplay** `false`
 
   Should the slider move by itself or only be triggered manually?
 
-- speed `750`
+- **speed** `750`
 
   How fast (in milliseconds) Unslider should animate between slides.
 
-- delay `3000`
+- **delay** `3000`
 
   If `autoplay` is set to true, how many milliseconds should pass between moving the slides?
 
-- index `'first'`
+- **index** `'first'`
 
   If this is set to an integer, `'first'` or `'last'`, it'll set the default slide to that position rather than the first slide.
 
-- keys `true`
+- **keys** `true`
 
   Do you want to add keyboard shortcut support to Unslider? This can be set to either `true`, `false`, or an options/keycode object, like so:
 
@@ -89,13 +89,13 @@ var unslider = new Unslider(".my-slider");
   }
   ```
 
-- nav `true`
+- **nav** `true`
 
   Do you want to generate an automatic clickable navigation for each slide in your slider?
 
   You can over-ride what appears in each link by adding a `data-nav="nav title"` parameter to each slide element (replacing 'nav title' with whatever you'd like the title to be).
 
-- arrows `true`
+- **arrows** `true`
 
   Do you want to add left/right arrows to your slider? You can style these in your CSS by writing rules for `.unslider-arrow` (or alternatively you can change the HTML string to whatever you like and style that).
 
@@ -113,7 +113,7 @@ var unslider = new Unslider(".my-slider");
   }
   ```
 
-- animation `'horizontal'`
+- **animation** `'horizontal'`
 
   How should Unslider animate each slide? Right now, there's three different animation types:
 
@@ -121,7 +121,7 @@ var unslider = new Unslider(".my-slider");
   - 'vertical': which moves the slides from top-to-bottom
   - 'fade': which crossfades slides
 
-- selectors
+- **selectors**
 
   If you're not using an unordered list to display your slider, you'll need to add a `selectors` object referencing what elements Unslider should look for. The container should be the "conveyor belt" that gets moved, and the **slides** are - well - the slides.
 
@@ -134,11 +134,11 @@ var unslider = new Unslider(".my-slider");
 
   Note: you'll probably also need to update/write custom CSS in order for Unslider to work. Check the source files for `unslider.scss` to get a better idea of what needs styling.
 
-- animateHeight `false`
+- **animateHeight** `false`
 
   Should Unslider animate the height of the container to match the current slide's height? If so, set to `true`.
 
-- activeClass `'unslider-active'`
+- **activeClass** `'unslider-active'`
 
   What class should Unslider set to the active slides and navigation items? Use this if you want to match your CSS.
 
@@ -152,37 +152,37 @@ slider.methodName();
 slider.methodName("arguments", "go", "here");
 ```
 
-- init(options)
+- **init(options)**
 
   Set everything up with the slider. This is called automatically when you set up `Unslider()` for the first time, but if there's layout problems or you want to re-initiate the slider for some reason, you can call it here.
 
-- calculateSlides()
+- **calculateSlides()**
 
   If a slide gets added or removed, you should call this otherwise things'll probably break.
 
-- start()
+- **start()**
 
   Make the slider move itself between slides. Will use the options object to determine the delay between slides.
 
-- stop()
+- **stop()**
 
   Stop the slider moving itself between slides. Will stop any auto-playing.
 
-- initKeys()
+- **initKeys()**
 
   Manually add keyboard shortcut support. Can be used after `destroyKeys` to restore keyboard shortcut support, or with `{keys: false}` in the options object to add support later on.
 
-- destroyKeys()
+- **destroyKeys()**
 
   Remove any keyboard shortcut handlers for the slider.
 
-- setIndex(to)
+- **setIndex(to)**
 
   Set the current index and navigation for Unslider. **This doesn't move the slider!** You can get some goofy results doing this - if you want to move the slider to a specific slide, I'd recommend you use `animate()` instead.
 
   The argument `to` can be an integer with the index of the slide you want to set (remember: indexes start at zero!), or the strings `'first'` or `'last'` if you don't know how many slides there are.
 
-- animte(to, dir)
+- **animte(to, dir)**
 
   Move the slider to a specific slide, update any navigation and fire a `unslider:change` event. Use like so:
 
@@ -204,11 +204,11 @@ slider.methodName("arguments", "go", "here");
   slider.animate("last", "prev");
   ```
 
-- next()
+- **next()**
 
   Manually move to the next slide (or the first slide if you reach the last slide).
 
-- prev()
+- **prev()**
 
   Same thing as `next()` but in the other direction. Moves the slider backwards manually or to the last slide if there's no more behind it.
 
