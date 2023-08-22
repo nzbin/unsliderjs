@@ -1,7 +1,6 @@
 @use './variables' as *;
 
-.#{$unslider-namespace},
-%#{$unslider-namespace} {
+.#{$unslider-namespace} {
   // Should either be relative or absolute as long as it's not static,
   // but we'll set it using jQuery
   // position: relative;

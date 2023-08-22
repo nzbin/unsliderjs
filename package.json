@@ -30,8 +30,8 @@
     "url": "https://github.com/nzbin/unsliderjs/issues"
   },
   "scripts": {
-    "sass": "sass --style=expanded src/scss/unslider.scss dist/unslider.css",
-    "sassmin": "sass --style=compressed src/scss/unslider.scss dist/unslider.min.css",
+    "sass": "sass --style=expanded src/scss/unslider.scss:dist/unslider.css src/scss/unslider-dots.scss:dist/unslider-dots.css",
+    "sassmin": "sass --style=compressed src/scss/unslider.scss:dist/unslider.min.css src/scss/unslider-dots.scss:dist/unslider-dots.min.css",
     "postcss": "postcss -r dist/*.css",
     "build": "run-s build:css build:js",
     "build:css": "run-s sass",

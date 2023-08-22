@@ -1,12 +1,9 @@
 @use './variables' as *;
 
-@if ($unslider-dot-navigation) {
-
-  .#{$unslider-namespace}-nav,
-  %#{$unslider-namespace}-nav {
+@if ($unslider-dot-nav) {
+  .#{$unslider-namespace}-nav {
     >ol {
       li {
-        display: inline-block;
         width: 6px;
         height: 6px;
         margin: 0 4px;
@@ -14,11 +11,11 @@
         border-radius: 5px;
         overflow: hidden;
         text-indent: -999em;
-        border: 2px solid $unslider-dot-colour;
-        cursor: pointer;
+        border: 2px solid $unslider-dot-color;
+        transition: color .2s, background .2s;
 
         &.unslider-active {
-          background: $unslider-dot-colour;
+          background: $unslider-dot-color;
           cursor: default;
         }
       }
