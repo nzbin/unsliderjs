@@ -10,9 +10,9 @@ class Unslider {
       return Unslider.store[sid];
     }
     $(el).attr('data-unslider', uid);
-    Unslider.store[uid] = new Unslider(el, options);
+    const slider = Unslider.store[uid] = new Unslider(el, options);
     uid++;
-    return Unslider.store[uid];
+    return slider;
   }
 
   // Store Unslider instances

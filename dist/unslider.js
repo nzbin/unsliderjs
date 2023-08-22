@@ -1864,9 +1864,9 @@
           return Unslider.store[sid];
         }
         D(el).attr('data-unslider', uid);
-        Unslider.store[uid] = new Unslider(el, options);
+        var slider = Unslider.store[uid] = new Unslider(el, options);
         uid++;
-        return Unslider.store[uid];
+        return slider;
       }
 
       // Store Unslider instances
