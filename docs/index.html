@@ -252,22 +252,21 @@
             <li>
               <div class="wrap vertical">
                 <h2>Set up Unslider’s CSS.</h2>
-                <p>In order to display properly, Unslider needs some styles applied to it. If you
-                  want styled dots as well, turn on the <code>$unslider-dot-nav</code>.
-                </p>
-
-                <p><span class="new">Note</span> By default, the colour of the styled dots is black.
-                  You can change this by compiling the SCSS file and changing the
-                  <code>$unslider-dot-color</code>.
-                </p>
+                <p>In order to display properly, Unslider needs some styles applied to it. Import
+                  SCSS file:</p>
 
                 <pre>@use 'unsliderjs' with (
-  $unslider-dot-nav: true,
-  $unslider-dot-color: #fff
+  $unslider-dot-nav: false,
+  $unslider-dot-color: #000,
 );</pre>
 
                 <p>You can also easily add them by linking to the <code>dist/css/unslider.css</code>
-                  file.</p>
+                  file. If you want styled dots as well, link to
+                  <code>dist/css/unslider-dots.css</code> as well.
+                </p>
+                <p><span class="new">Note</span> By default, the color of the styled dots is black.
+                  You can manually editing anywhere it says <code>#000</code>.
+                </p>
 
                 <pre>&lt;link rel="stylesheet" href="<span class="ghost">/path/to/unslider</span>/dist/css/unslider.css"&gt;</pre>
 
@@ -606,7 +605,7 @@ slider.$context.on('unslider:moved', function(event, index, slide) {
       </li>
 
       <li id="download"
-          data-nav="Downloading, Compiling <span class='amp'>&amp;</span> Contributing">
+          data-nav="Downloading <span class='amp'>&amp;</span> Contributing">
         <div class="wrap vertical">
           <h1>Downloading Unslider</h1>
           <p>The latest version of Unslider is open-source and available through GitHub. Any
@@ -619,10 +618,11 @@ slider.$context.on('unslider:moved', function(event, index, slide) {
           <h2>Problems and contributing</h2>
           <a class="btn secondary" href="http://github.com/nzbin/unsliderjs/issues">Got any
             problems?</a>
+          <a class="btn secondary" href="https://github.com/nzbin/unsliderjs/discussions">Chat about
+            Unslider</a>
           <a class="btn secondary"
              href="http://github.com/nzbin/unsliderjs/blob/master/contributing.md">Want to
             contribute?</a>
-          <a class="btn secondary" href="http://gitter.im/nzbin/unsliderjs">Chat about Unslider</a>
           </h1>
       </li>
     </ul>
