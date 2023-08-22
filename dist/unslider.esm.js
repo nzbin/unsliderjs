@@ -1257,6 +1257,7 @@ var fnMethods = {
 D.extend(methods);
 D.fn.extend(fnMethods);
 
+var uid = 1;
 var Unslider = /*#__PURE__*/function () {
   function Unslider(el, options) {
     var _this = this;
@@ -1368,12 +1369,6 @@ var Unslider = /*#__PURE__*/function () {
       return _this.animate(_this.current - 1, 'prev');
     });
     this.$context = D(el);
-
-    // Make sure the slider can only be initialized once
-    if (this.$context.attr('data-' + this._) != null) {
-      return;
-    }
-    this.$context.attr('data-' + this._, 'true');
     this.init(options);
   }
 
@@ -1855,12 +1850,27 @@ var Unslider = /*#__PURE__*/function () {
         return match.toUpperCase();
       });
     }
+  }], [{
+    key: "create",
+    value: function create(el, options) {
+      // Make sure the slider can only be initialized once
+      var sid = D(el).attr('data-unslider');
+      if (sid != null) {
+        return Unslider.store[sid];
+      }
+      D(el).attr('data-unslider', uid);
+      var slider = new Unslider(el, options);
+      Unslider.store[uid] = slider;
+      uid++;
+      return slider;
+    }
   }]);
   return Unslider;
 }(); // Internal (but global) jQuery methods
 // They're both just helpful types of shorthand for
 // anything that might take too long to write out or
 // something that might be used more than once.
+_defineProperty(Unslider, "store", Object.create(null));
 D.fn._active = function (className) {
   return this.addClass(className).siblings().removeClass(className);
 };

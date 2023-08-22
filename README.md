@@ -26,7 +26,7 @@ $ npm install unsliderjs --save
 
 ```js
 // You can pass either CSS selector or HTML element for the first parameter
-new Unslider(selector_or_element, options);
+Unslider.create(selector_or_element, options);
 ```
 
 ### Include files
@@ -56,7 +56,7 @@ import Unslider from "unsliderjs";
 ### Call the plugin
 
 ```js
-var unslider = new Unslider(".my-slider");
+var unslider = Unslider.create(".my-slider");
 ```
 
 ## Options
@@ -146,7 +146,7 @@ var unslider = new Unslider(".my-slider");
 
 ```js
 // Assuming we've got a variable set like this...
-var slider = new Unslider(".my-demo-slider");
+var slider = Unslider.create(".my-demo-slider");
 
 slider.methodName();
 slider.methodName("arguments", "go", "here");
@@ -188,7 +188,7 @@ slider.methodName("arguments", "go", "here");
 
   ```js
   // Our trusty slider!
-  var slider = new Unslider(".slider");
+  var slider = Unslider.create(".slider");
 
   // Move to the first slide
   slider.animate("first");
@@ -216,7 +216,7 @@ slider.methodName("arguments", "go", "here");
 
 ```js
 // Set up our slider to automatically move every second so we can see what's happening
-var slider = new Unslider(".slider", { autoplay: true, delay: 1000 });
+var slider = Unslider.create(".slider", { autoplay: true, delay: 1000 });
 
 // Listen to slide changes
 slider.$context.on("unslider:change", function (event, index, slide) {

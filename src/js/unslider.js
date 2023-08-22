@@ -1,6 +1,23 @@
 import $ from './domq.js';
 
+let uid = 1;
+
 class Unslider {
+  // Make sure the Unslider can only be initialized once
+  static create(el, options) {
+    const sid = $(el).attr('data-unslider');
+    if (sid != null) {
+      return Unslider.store[sid];
+    }
+    $(el).attr('data-unslider', uid);
+    Unslider.store[uid] = new Unslider(el, options);
+    uid++;
+    return Unslider.store[uid];
+  }
+
+  // Store Unslider instances
+  static store = Object.create(null);
+
   // Create an Unslider reference we can use everywhere
   _ = 'unslider';
 
@@ -19,8 +36,7 @@ class Unslider {
     // Animation speed in millseconds
     speed: 750,
 
-    // An easing string to use. If you're using Velocity, use a
-    // Velocity string otherwise you can use jQuery/jQ UI options.
+    // An easing string to use.
     easing: 'swing', // [.42, 0, .58, 1],
 
     // Does it support keyboard arrows?
@@ -108,12 +124,6 @@ class Unslider {
 
   constructor(el, options) {
     this.$context = $(el);
-
-    // Make sure the slider can only be initialized once
-    if (this.$context.attr('data-' + this._) != null) {
-      return;
-    }
-    this.$context.attr('data-' + this._, 'true');
 
     this.init(options);
   }
@@ -355,7 +365,6 @@ class Unslider {
   }
 
   // Remove any trace of arrows
-  // Loop our array of arrows and use jQuery to remove
   // It'll unbind any event handlers for us
   destroyArrows() {
     $.each(this.$arrows, (i, $arrow) => {
@@ -589,7 +598,6 @@ class Unslider {
   }
 }
 
-// Internal (but global) jQuery methods
 // They're both just helpful types of shorthand for
 // anything that might take too long to write out or
 // something that might be used more than once.
