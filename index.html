@@ -68,7 +68,7 @@
 
 <span class="ghost">&lt;!-- And the relevant JavaScript --&gt;</span>
 &lt;script src=&quot;/path/to/unslider.js&quot;&gt;&lt;/script&gt; <span class="ghost">&lt;!-- but with the right path! --&gt;</span>
-&lt;script&gt;new Unslider(&apos;.banner&apos;)&lt;/script&gt;</pre>
+&lt;script&gt;Unslider.create(&apos;.banner&apos;)&lt;/script&gt;</pre>
             </div>
 
             <div class="download">
@@ -100,7 +100,7 @@
                 </ul>
               </div>
 
-              <script>new Unslider('.default-slider');</script>
+              <script>Unslider.create('.default-slider');</script>
             </div>
 
             <div class="demo">
@@ -115,7 +115,7 @@
                 </ul>
               </div>
 
-              <script>new Unslider('.automatic-slider', {
+              <script>Unslider.create('.automatic-slider', {
                   autoplay: true
                 });</script>
             </div>
@@ -132,7 +132,7 @@
                 </ul>
               </div>
 
-              <script>new Unslider('.vertical-slider', {
+              <script>Unslider.create('.vertical-slider', {
                   animation: 'vertical',
                   autoplay: true,
                   infinite: true
@@ -153,7 +153,7 @@
                 </ul>
               </div>
 
-              <script>new Unslider('.fading-slider', {
+              <script>Unslider.create('.fading-slider', {
                   animation: 'fade',
                   autoplay: true,
                   arrows: false
@@ -176,7 +176,7 @@
 
               <input id="manual" placeholder="Type the slide number (or just first/last) here">
 
-              <script>var unslider = new Unslider('.manual-slider', {
+              <script>var unslider = Unslider.create('.manual-slider', {
                   keys: false,
                   arrows: false,
                   nav: false
@@ -202,7 +202,7 @@
                 </ul>
               </div>
 
-              <script>new Unslider('.infinite-slider', {
+              <script>Unslider.create('.infinite-slider', {
                   infinite: true
                 });</script>
             </div>
@@ -283,10 +283,11 @@
                 <p>Since we added the HTML for a slider with a class of <code>my-slider</code>, we
                   can call the plugin as below.</p>
 
-                <pre><span class="ghost">&lt;script src=&quot;/path/to/unslider.js&quot;&gt;&lt;/script&gt;</span>
-	&lt;script&gt;
-	  new <b class="adjustable">Unslider('.my-slider')</b>;
-	&lt;/script&gt;
+                <pre>
+    <span class="ghost">&lt;script src=&quot;/path/to/unslider.js&quot;&gt;&lt;/script&gt;</span>
+    &lt;script&gt;
+      <b class="adjustable">Unslider.create('.my-slider')</b>;
+    &lt;/script&gt;
 <span class="ghost">&lt;/body&gt;</span></pre>
 
                 <p>You can add as many sliders as you like - and use any of the <a
@@ -297,7 +298,7 @@
         </div>
 
         <script>
-          new Unslider('.install-steps', {
+          Unslider.create('.install-steps', {
             animateHeight: true,
             arrows: true,
             nav: function (slide, index) {
@@ -335,7 +336,7 @@
             <p>Unslider has a handful of methods you can use to control your slider and two ways you
               can use these methods, as shown below.</p>
             <pre><span class="ghost">//  Assuming we've got a variable set like this...
-var slider = new Unslider('.my-demo-slider');</span>
+var slider = Unslider.create('.my-demo-slider');</span>
 
 slider.methodName();
 slider.methodName('arguments', 'go', 'here');</pre>
@@ -343,7 +344,7 @@ slider.methodName('arguments', 'go', 'here');</pre>
             <dl>
               <dt>init <em>args: <code>options</code></em></dt>
               <dd>Set everything up with the slider. This is called automatically when you set up
-                <code>new Unslider()</code> for the first time, but if there's layout problems or
+                <code>Unslider.create()</code> for the first time, but if there's layout problems or
                 you
                 want to re-initiate the slider for some reason, you can call it here. The
                 <code>options</code> variable is an object (see below).
@@ -353,7 +354,7 @@ slider.methodName('arguments', 'go', 'here');</pre>
               <dd>If a slide gets added or removed, you should call this otherwise things'll
                 probably break.
 
-                <pre>var slider = new Unslider('.my-slider');
+                <pre>var slider = Unslider.create('.my-slider');
 
 <span class="ghost">// I don't like this last slide, let's get rid of it</span>
 slider.$context.find('li').last().remove();
@@ -425,7 +426,7 @@ $.getScript(scripts[1], function() {
                 </p>
 
                 <pre><span class="ghost">//  Our trusty slider!</span>
-var slider = new Unslider('.slider');
+var slider = Unslider.create('.slider');
 
 <span class="ghost">//  Move to the first slide</span>
 slider.animate('first');
@@ -463,7 +464,7 @@ slider.animate('last', 'prev');</pre>
               guess.</p>
 
             <pre><span class="ghost">//  Set up our slider to automatically move every second so we can see what's happening</span>
-var slider = new Unslider('.slider', { autoplay: true, delay: 1000 });
+var slider = Unslider.create('.slider', { autoplay: true, delay: 1000 });
 
 <span class="ghost">//  When the slider has been set up, fire the event off.</span>
 slider.$context.on('unslider:change', function(event, index, slide) {
@@ -479,7 +480,7 @@ slider.$context.on('unslider:moved', function(event, index, slide) {
             <p>Unslider uses a standard jQuery plugin options object, which looks like the
               highlighted example below:</p>
 
-            <pre><span class="ghost">new Unslider('.my-demo-slider', </span>{
+            <pre><span class="ghost">Unslider.create('.my-demo-slider', </span>{
 	settingName: settingValue,
 	anotherSetting: anotherValue
 }<span class="ghost">);</span></pre>
