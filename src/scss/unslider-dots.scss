@@ -1,3 +1,8 @@
-@use './unslider.scss' with (
+// Here's where everything gets included. You don't need
+// to change anything here, and doing so might break
+// stuff. Here be dragons and all that.
+
+@forward 'variables' with (
   $unslider-dot-nav: true
-)
+);
+@forward 'dots';

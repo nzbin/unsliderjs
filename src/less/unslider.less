@@ -5,13 +5,13 @@
 @import 'variables';
 @import 'reset';
 
-//  Unfortunately, LESS isn't great at conditionals
+// Unfortunately, LESS isn't great at conditionals
 .use-dots() when (@unslider-dot-nav = true) { @import 'dots'; }
 .use-dots();
 
-//  You can also import dots directly yourself to use
-//  in a more specific selector, like so:
+// You can also import dots directly yourself to use
+// in a more specific selector, like so:
 // #demo {
-// 	.use-dots() when (@unslider-dot-nav = true) { @import 'dots'; }
-// 	.use-dots();
+//   .use-dots() when (@unslider-dot-nav = true) { @import 'dots'; }
+//   .use-dots();
 // }
