@@ -16,6 +16,7 @@
   text-indent: -999em;
   border: 2px solid #000;
   transition: color 0.2s, background 0.2s;
+  cursor: pointer;
 }
 .unslider-nav > ol li.unslider-active {
   background: #000;

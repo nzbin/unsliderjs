@@ -1257,6 +1257,12 @@ var fnMethods = {
 D.extend(methods);
 D.fn.extend(fnMethods);
 
+function supportTouch() {
+  return !!('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch);
+}
+var TOUCH_START_EVENT = supportTouch() ? 'touchstart' : 'mousedown';
+var TOUCH_MOVE_EVENT = supportTouch() ? 'touchmove' : 'mousemove';
+var TOUCH_END_EVENT = supportTouch() ? 'touchend' : 'mouseup';
 var uid = 1;
 var Unslider = /*#__PURE__*/function () {
   function Unslider(el, options) {
@@ -1390,13 +1396,13 @@ var Unslider = /*#__PURE__*/function () {
       // We want to keep this script as small as possible
       // so we'll optimise some checks
       D.each(['nav', 'arrows', 'keys', 'infinite'], function (index, module) {
-        _this2.options[module] && _this2['init' + _this2._ucfirst(module)]();
+        _this2.options[module] && _this2['init' + D._ucfirst(module)]();
       });
 
-      // TODO: Add swipe support
-      // if (jQuery.event.special.swipe && this.options.swipe) {
-      //  this.initSwipe();
-      // }
+      // Add swipe support
+      if (this.options.swipe) {
+        this.initSwipe();
+      }
 
       // If autoplay is set to true, call this.start()
       // to start calling our timeouts
@@ -1549,45 +1555,52 @@ var Unslider = /*#__PURE__*/function () {
         });
       });
     }
-
-    // Requires jQuery.event.swipe
-    // -> stephband.info/jquery.event.swipe
   }, {
     key: "initSwipe",
     value: function initSwipe() {
       var _this7 = this;
       var width = this.$slides.width();
+      var height = this.$slides.height();
 
       // We don't want to have a tactile swipe in the slider
       // in the fade animation, as it can cause some problems
       // with layout, so we'll just disable it.
       if (this.options.animation !== 'fade') {
-        this.$container.on({
-          movestart: function movestart(e) {
-            // If the movestart heads off in a upwards or downwards
-            // direction, prevent it so that the browser scrolls normally.
-            if (e.distX > e.distY && e.distX < -e.distY || e.distX < e.distY && e.distX > -e.distY) {
-              return !!e.preventDefault();
-            }
-            _this7.$container.css('position', 'relative');
-          },
-          move: function move(e) {
-            _this7.$container.css('left', -(100 * _this7.current) + 100 * e.distX / width + '%');
-          },
-          moveend: function moveend(e) {
-            // Check if swiped distance is greater than threshold.
-            // If yes slide to next/prev slide. If not animate to
-            // starting point.
-
-            if (Math.abs(e.distX) / width > _this7.options.swipeThreshold) {
-              _this7[e.distX < 0 ? 'next' : 'prev']();
-            } else {
-              _this7.$container.animate({
-                left: -(100 * _this7.current) + '%'
-              }, _this7.options.speed / 2);
-            }
+        var isHorizontal = this.options.animation === 'horizontal';
+        var startX = 0;
+        var startY = 0;
+        var distX = 0;
+        var distY = 0;
+        var moveStart = function moveStart(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          distX = 0;
+          distY = 0;
+          startX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
+          startY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
+          D(document).on(TOUCH_MOVE_EVENT, move).on(TOUCH_END_EVENT, moveEnd);
+        };
+        var move = function move(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          distX = e.pageX - startX;
+          distY = e.pageY - startY;
+          if (isHorizontal) {
+            _this7.$container.css('left', -(100 * _this7.current) + 100 * distX / width + '%');
+          } else {
+            _this7.$container.css('top', -(100 * _this7.current) + 100 * distY / height + '%');
           }
-        });
+        };
+        var moveEnd = function moveEnd() {
+          var threshold = isHorizontal ? Math.abs(distX) / width : Math.abs(distY) / height;
+          if (threshold > _this7.options.swipeThreshold) {
+            _this7[(isHorizontal ? distX : distY) < 0 ? 'next' : 'prev']();
+          } else {
+            _this7.$container.animate(_defineProperty({}, isHorizontal ? 'left' : 'top', -(100 * _this7.current) + '%'), _this7.options.speed / 2);
+          }
+          D(document).off(TOUCH_MOVE_EVENT, move).off(TOUCH_END_EVENT, moveEnd);
+        };
+        this.$container.on(TOUCH_START_EVENT, moveStart);
       }
     }
 
@@ -1632,8 +1645,7 @@ var Unslider = /*#__PURE__*/function () {
   }, {
     key: "destroySwipe",
     value: function destroySwipe() {
-      // We bind to 4 events, so we'll unbind those
-      this.$container.off('movestart move moveend');
+      this.$container.off(TOUCH_START_EVENT);
     }
 
     // Unset the keyboard navigation
@@ -1686,7 +1698,7 @@ var Unslider = /*#__PURE__*/function () {
 
       // Delegate the right method - everything's named consistently
       // so we can assume it'll be called "animate" +
-      var fn = 'animate' + this._ucfirst(this.options.animation);
+      var fn = 'animate' + D._ucfirst(this.options.animation);
 
       // Make sure it's a valid animation method, otherwise we'll get
       // a load of bug reports that'll be really hard to report
@@ -1835,19 +1847,6 @@ var Unslider = /*#__PURE__*/function () {
       }
       return $el._move(obj, speed || this.options.speed, this.options.easing, callback);
     }
-
-    // The equivalent to PHP's ucfirst(). Take the first
-    // character of a string and make it uppercase.
-    // Simples.
-  }, {
-    key: "_ucfirst",
-    value: function _ucfirst(str) {
-      // Take our variable, run a regex on the first letter
-      return (str + '').toLowerCase().replace(/^./, function (match) {
-        // And uppercase it. Simples.
-        return match.toUpperCase();
-      });
-    }
   }], [{
     key: "create",
     value:
@@ -1876,6 +1875,17 @@ D.fn._active = function (className) {
 D.fn._move = function () {
   // this.stop(true, true);
   return D.fn[D.fn.velocity ? 'velocity' : 'animate'].apply(this, arguments);
+};
+
+// The equivalent to PHP's ucfirst(). Take the first
+// character of a string and make it uppercase.
+// Simples.
+D._ucfirst = function (str) {
+  // Take our variable, run a regex on the first letter
+  return (str + '').toLowerCase().replace(/^./, function (match) {
+    // And uppercase it. Simples.
+    return match.toUpperCase();
+  });
 };
 
 export { Unslider as default };

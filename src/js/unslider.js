@@ -1,5 +1,13 @@
 import $ from './domq.js';
 
+function supportTouch() {
+  return !!('ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch));
+}
+
+const TOUCH_START_EVENT = supportTouch() ? 'touchstart' : 'mousedown';
+const TOUCH_MOVE_EVENT = supportTouch() ? 'touchmove' : 'mousemove';
+const TOUCH_END_EVENT = supportTouch() ? 'touchend' : 'mouseup';
+
 let uid = 1;
 
 class Unslider {
@@ -144,13 +152,13 @@ class Unslider {
     // We want to keep this script as small as possible
     // so we'll optimise some checks
     $.each(['nav', 'arrows', 'keys', 'infinite'], (index, module) => {
-      this.options[module] && this['init' + this._ucfirst(module)]();
+      this.options[module] && this['init' + $._ucfirst(module)]();
     });
 
-    // TODO: Add swipe support
-    // if (jQuery.event.special.swipe && this.options.swipe) {
-    //  this.initSwipe();
-    // }
+    // Add swipe support
+    if (this.options.swipe) {
+      this.initSwipe();
+    }
 
     // If autoplay is set to true, call this.start()
     // to start calling our timeouts
@@ -296,41 +304,63 @@ class Unslider {
     });
   }
 
-  // Requires jQuery.event.swipe
-  // -> stephband.info/jquery.event.swipe
   initSwipe() {
     const width = this.$slides.width();
+    const height = this.$slides.height();
 
     // We don't want to have a tactile swipe in the slider
     // in the fade animation, as it can cause some problems
     // with layout, so we'll just disable it.
     if (this.options.animation !== 'fade') {
-      this.$container.on({
-        movestart: (e) => {
-          // If the movestart heads off in a upwards or downwards
-          // direction, prevent it so that the browser scrolls normally.
-          if ((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) {
-            return !!e.preventDefault();
-          }
+      const isHorizontal = this.options.animation === 'horizontal';
 
-          this.$container.css('position', 'relative');
-        },
-        move: (e) => {
-          this.$container.css('left', -(100 * this.current) + (100 * e.distX / width) + '%');
-        },
-        moveend: (e) => {
-          // Check if swiped distance is greater than threshold.
-          // If yes slide to next/prev slide. If not animate to
-          // starting point.
+      let startX = 0;
+      let startY = 0;
+      let distX = 0;
+      let distY = 0;
 
-          if ((Math.abs(e.distX) / width) > this.options.swipeThreshold) {
-            this[e.distX < 0 ? 'next' : 'prev']();
-          }
-          else {
-            this.$container.animate({ left: -(100 * this.current) + '%' }, this.options.speed / 2);
-          }
+      const moveStart = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        distX = 0;
+        distY = 0;
+        startX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
+        startY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
+
+        $(document).on(TOUCH_MOVE_EVENT, move).on(TOUCH_END_EVENT, moveEnd);
+      };
+
+      const move = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        distX = e.pageX - startX;
+        distY = e.pageY - startY;
+
+        if (isHorizontal) {
+          this.$container.css('left', -(100 * this.current) + (100 * distX / width) + '%');
+        } else {
+          this.$container.css('top', -(100 * this.current) + (100 * distY / height) + '%');
         }
-      });
+      };
+
+      const moveEnd = () => {
+        const threshold = isHorizontal ? Math.abs(distX) / width : Math.abs(distY) / height;
+
+        if (threshold > this.options.swipeThreshold) {
+          this[(isHorizontal ? distX : distY) < 0 ? 'next' : 'prev']();
+        } else {
+          this.$container.animate(
+            { [isHorizontal ? 'left' : 'top']: -(100 * this.current) + '%' },
+            this.options.speed / 2
+          );
+        }
+
+        $(document).off(TOUCH_MOVE_EVENT, move).off(TOUCH_END_EVENT, moveEnd);
+      };
+
+      this.$container.on(TOUCH_START_EVENT, moveStart);
     }
   }
 
@@ -374,8 +404,7 @@ class Unslider {
 
   // Remove any swipe events and reset the position
   destroySwipe() {
-    // We bind to 4 events, so we'll unbind those
-    this.$container.off('movestart move moveend');
+    this.$container.off(TOUCH_START_EVENT);
   }
 
   // Unset the keyboard navigation
@@ -429,7 +458,7 @@ class Unslider {
 
     // Delegate the right method - everything's named consistently
     // so we can assume it'll be called "animate" +
-    const fn = 'animate' + this._ucfirst(this.options.animation);
+    const fn = 'animate' + $._ucfirst(this.options.animation);
 
     // Make sure it's a valid animation method, otherwise we'll get
     // a load of bug reports that'll be really hard to report
@@ -585,17 +614,6 @@ class Unslider {
 
     return $el._move(obj, speed || this.options.speed, this.options.easing, callback);
   }
-
-  // The equivalent to PHP's ucfirst(). Take the first
-  // character of a string and make it uppercase.
-  // Simples.
-  _ucfirst(str) {
-    // Take our variable, run a regex on the first letter
-    return (str + '').toLowerCase().replace(/^./, function (match) {
-      // And uppercase it. Simples.
-      return match.toUpperCase();
-    });
-  }
 }
 
 // They're both just helpful types of shorthand for
@@ -608,6 +626,17 @@ $.fn._active = function (className) {
 $.fn._move = function () {
   // this.stop(true, true);
   return $.fn[$.fn.velocity ? 'velocity' : 'animate'].apply(this, arguments);
+};
+
+// The equivalent to PHP's ucfirst(). Take the first
+// character of a string and make it uppercase.
+// Simples.
+$._ucfirst = function (str) {
+  // Take our variable, run a regex on the first letter
+  return (str + '').toLowerCase().replace(/^./, function (match) {
+    // And uppercase it. Simples.
+    return match.toUpperCase();
+  });
 };
 
 export default Unslider;
