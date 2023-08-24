@@ -5,7 +5,7 @@ var GoSquared = {
 $(function () {
   //  This is specific to THIS WEBSITE ONLY.
   //  Don't copy this, it won't do anything and might break things!
-  var slider = Unslider.create('main', { arrows: false, keys: false });
+  var slider = Unslider.create('main', { arrows: false, keys: false, swipe: false });
 
   //  Click handler to automatically animate to a specific
   //  panel based on ID
