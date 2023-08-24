@@ -547,10 +547,10 @@ main > ol li.active {
   box-shadow: 0 4px 6px rgba(0,0,0,.1);
 }
 #demos .demo.vertical-slider-wrapper > div {
-  padding: 0;
+  /* padding: 0; */
 }
 #demos .demo.vertical-slider-wrapper ul li {
-  padding: 40px;
+  /* padding: 40px; */
 }
 #demos .unslider-nav,
 #setup .unslider-nav {
