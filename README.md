@@ -11,6 +11,7 @@ Unsliderjs is an ultra-simple JS slider for your website.
 - Lightweight
 - Responsive
 - Adjusts for height
+- Swipe support
 - Keyboard support
 - RTL support
 
@@ -95,6 +96,24 @@ var unslider = Unslider.create(".my-slider");
 
   You can over-ride what appears in each link by adding a `data-nav="nav title"` parameter to each slide element (replacing 'nav title' with whatever you'd like the title to be).
 
+  If you want to add dot-navigation to a slide, simply include `unslider-dots.css` to your CSS file.
+
+  ```js
+  nav: function(index, label) {
+    //  $(this) is the current index slide
+    //  label is the current label
+    //  index is the slide index, starting at 0
+
+    //  On the third slide, append " third slide!"
+    if(index === 2) {
+      return 'abc' + label + ' third slide!';
+    }
+
+    //  Only show the number
+    return index + 1;
+  }
+  ```
+
 - **arrows** `true`
 
   Do you want to add left/right arrows to your slider? You can style these in your CSS by writing rules for `.unslider-arrow` (or alternatively you can change the HTML string to whatever you like and style that).
@@ -112,6 +131,8 @@ var unslider = Unslider.create(".my-slider");
     start: '<a class="unslider-play">Play</a>'
   }
   ```
+
+  This option is a bit of a misnomer, as you can set it to generate anything, not just arrows.
 
 - **animation** `'horizontal'`
 
@@ -132,7 +153,7 @@ var unslider = Unslider.create(".my-slider");
   }
   ```
 
-  Note: you'll probably also need to update/write custom CSS in order for Unslider to work. Check the source files for `unslider.scss` to get a better idea of what needs styling.
+  _Note:_ you'll probably also need to update/write custom CSS in order for Unslider to work. Check the source files for `unslider.scss` to get a better idea of what needs styling.
 
 - **animateHeight** `false`
 
@@ -141,6 +162,14 @@ var unslider = Unslider.create(".my-slider");
 - **activeClass** `'unslider-active'`
 
   What class should Unslider set to the active slides and navigation items? Use this if you want to match your CSS.
+
+- **swipe** `true`
+
+  Have swipe support? You can set this here with a boolean and always use initSwipe/destroySwipe later on.
+
+- **swipeThreshold** `0.2`
+
+  Ratio to trigger swipe to next/previous slide during long swipes.
 
 ## Methods
 
@@ -160,6 +189,16 @@ slider.methodName("arguments", "go", "here");
 
   If a slide gets added or removed, you should call this otherwise things'll probably break.
 
+  ```js
+  var slider = Unslider.create(".my-slider");
+
+  // I don't like this last slide, let's get rid of it
+  slider.$context.find("li").last().remove();
+
+  // Let's recalculate Unslider so it knows what's going on
+  slider.calculateSlides();
+  ```
+
 - **start()**
 
   Make the slider move itself between slides. Will use the options object to determine the delay between slides.
@@ -175,6 +214,14 @@ slider.methodName("arguments", "go", "here");
 - **destroyKeys()**
 
   Remove any keyboard shortcut handlers for the slider.
+
+- **initSwipe()**
+
+  Set up swipe functionality manually.
+
+- **destroySwipe()**
+
+  Remove swipe support. Does what it says on the tin.
 
 - **setIndex(to)**
 
