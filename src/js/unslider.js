@@ -313,6 +313,7 @@ class Unslider {
     // with layout, so we'll just disable it.
     if (this.options.animation !== 'fade') {
       const isHorizontal = this.options.animation === 'horizontal';
+      const direction = isHorizontal ? 'left' : 'top';
 
       let startX = 0;
       let startY = 0;
@@ -332,29 +333,27 @@ class Unslider {
       };
 
       const move = (e) => {
-        e.preventDefault();
         e.stopPropagation();
 
-        distX = e.pageX - startX;
-        distY = e.pageY - startY;
+        const endX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
+        const endY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
+        distX = endX - startX;
+        distY = endY - startY;
 
-        if (isHorizontal) {
-          this.$container.css('left', -(100 * this.current) + (100 * distX / width) + '%');
-        } else {
-          this.$container.css('top', -(100 * this.current) + (100 * distY / height) + '%');
-        }
+        const dist = isHorizontal ? distX : distY;
+        const size = isHorizontal ? width : height;
+
+        this.$container.css(direction, -(100 * this.current) + (100 * dist / size) + '%');
       };
 
       const moveEnd = () => {
-        const threshold = isHorizontal ? Math.abs(distX) / width : Math.abs(distY) / height;
+        const dist = isHorizontal ? distX : distY;
+        const size = isHorizontal ? width : height;
 
-        if (threshold > this.options.swipeThreshold) {
-          this[(isHorizontal ? distX : distY) < 0 ? 'next' : 'prev']();
+        if ((Math.abs(dist) / size) > this.options.swipeThreshold) {
+          this[dist < 0 ? 'next' : 'prev']();
         } else {
-          this.$container.animate(
-            { [isHorizontal ? 'left' : 'top']: -(100 * this.current) + '%' },
-            this.options.speed / 2
-          );
+          this.$container.animate({ [direction]: -(100 * this.current) + '%' }, this.options.speed / 2);
         }
 
         $(document).off(TOUCH_MOVE_EVENT, move).off(TOUCH_END_EVENT, moveEnd);
