@@ -1573,6 +1573,7 @@
         // with layout, so we'll just disable it.
         if (this.options.animation !== 'fade') {
           var isHorizontal = this.options.animation === 'horizontal';
+          var direction = isHorizontal ? 'left' : 'top';
           var startX = 0;
           var startY = 0;
           var distX = 0;
@@ -1587,22 +1588,22 @@
             D(document).on(TOUCH_MOVE_EVENT, move).on(TOUCH_END_EVENT, moveEnd);
           };
           var move = function move(e) {
-            e.preventDefault();
             e.stopPropagation();
-            distX = e.pageX - startX;
-            distY = e.pageY - startY;
-            if (isHorizontal) {
-              _this7.$container.css('left', -(100 * _this7.current) + 100 * distX / width + '%');
-            } else {
-              _this7.$container.css('top', -(100 * _this7.current) + 100 * distY / height + '%');
-            }
+            var endX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
+            var endY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
+            distX = endX - startX;
+            distY = endY - startY;
+            var dist = isHorizontal ? distX : distY;
+            var size = isHorizontal ? width : height;
+            _this7.$container.css(direction, -(100 * _this7.current) + 100 * dist / size + '%');
           };
           var moveEnd = function moveEnd() {
-            var threshold = isHorizontal ? Math.abs(distX) / width : Math.abs(distY) / height;
-            if (threshold > _this7.options.swipeThreshold) {
-              _this7[(isHorizontal ? distX : distY) < 0 ? 'next' : 'prev']();
+            var dist = isHorizontal ? distX : distY;
+            var size = isHorizontal ? width : height;
+            if (Math.abs(dist) / size > _this7.options.swipeThreshold) {
+              _this7[dist < 0 ? 'next' : 'prev']();
             } else {
-              _this7.$container.animate(_defineProperty({}, isHorizontal ? 'left' : 'top', -(100 * _this7.current) + '%'), _this7.options.speed / 2);
+              _this7.$container.animate(_defineProperty({}, direction, -(100 * _this7.current) + '%'), _this7.options.speed / 2);
             }
             D(document).off(TOUCH_MOVE_EVENT, move).off(TOUCH_END_EVENT, moveEnd);
           };
