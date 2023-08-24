@@ -1563,6 +1563,7 @@ var Unslider = /*#__PURE__*/function () {
       // in the fade animation, as it can cause some problems
       // with layout, so we'll just disable it.
       if (this.options.animation !== 'fade') {
+        this.$context.addClass(this.prefix + 'swipe');
         var isHorizontal = this.options.animation === 'horizontal';
         var direction = isHorizontal ? 'left' : 'top';
         var width = 0;
@@ -1580,6 +1581,7 @@ var Unslider = /*#__PURE__*/function () {
           distY = 0;
           startX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
           startY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
+          _this7.$context.addClass(_this7.prefix + 'swiping');
           D(document).on(TOUCH_MOVE_EVENT, move).on(TOUCH_END_EVENT, moveEnd);
         };
         var move = function move(e) {
@@ -1600,6 +1602,7 @@ var Unslider = /*#__PURE__*/function () {
           } else {
             _this7.$container.animate(_defineProperty({}, direction, -(100 * _this7.current) + '%'), _this7.options.speed / 2);
           }
+          _this7.$context.removeClass(_this7.prefix + 'swiping');
           D(document).off(TOUCH_MOVE_EVENT, move).off(TOUCH_END_EVENT, moveEnd);
         };
         this.$container.on(TOUCH_START_EVENT, moveStart);

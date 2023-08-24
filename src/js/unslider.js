@@ -1,7 +1,9 @@
 import $ from './domq.js';
 
 function supportTouch() {
-  return !!('ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch));
+  return !!(
+    'ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch)
+  );
 }
 
 const TOUCH_START_EVENT = supportTouch() ? 'touchstart' : 'mousedown';
@@ -309,6 +311,8 @@ class Unslider {
     // in the fade animation, as it can cause some problems
     // with layout, so we'll just disable it.
     if (this.options.animation !== 'fade') {
+      this.$context.addClass(this.prefix + 'swipe');
+
       const isHorizontal = this.options.animation === 'horizontal';
       const direction = isHorizontal ? 'left' : 'top';
 
@@ -329,6 +333,8 @@ class Unslider {
         distY = 0;
         startX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
         startY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
+
+        this.$context.addClass(this.prefix + 'swiping');
 
         $(document).on(TOUCH_MOVE_EVENT, move).on(TOUCH_END_EVENT, moveEnd);
       };
@@ -356,6 +362,8 @@ class Unslider {
         } else {
           this.$container.animate({ [direction]: -(100 * this.current) + '%' }, this.options.speed / 2);
         }
+
+        this.$context.removeClass(this.prefix + 'swiping');
 
         $(document).off(TOUCH_MOVE_EVENT, move).off(TOUCH_END_EVENT, moveEnd);
       };

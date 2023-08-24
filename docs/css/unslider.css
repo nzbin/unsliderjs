@@ -60,5 +60,11 @@
 .unslider-nav > ol li {
   display: inline-block;
 }
+.unslider-swipe {
+  cursor: grab;
+}
+.unslider-swipe.unslider-swiping {
+  cursor: grabbing;
+}
 
 /*# sourceMappingURL=unslider.css.map */
