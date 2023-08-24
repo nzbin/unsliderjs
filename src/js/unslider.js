@@ -305,9 +305,6 @@ class Unslider {
   }
 
   initSwipe() {
-    const width = this.$slides.width();
-    const height = this.$slides.height();
-
     // We don't want to have a tactile swipe in the slider
     // in the fade animation, as it can cause some problems
     // with layout, so we'll just disable it.
@@ -315,6 +312,8 @@ class Unslider {
       const isHorizontal = this.options.animation === 'horizontal';
       const direction = isHorizontal ? 'left' : 'top';
 
+      let width = 0;
+      let height = 0;
       let startX = 0;
       let startY = 0;
       let distX = 0;
@@ -324,6 +323,8 @@ class Unslider {
         e.preventDefault();
         e.stopPropagation();
 
+        width = this.$context.width();
+        height = this.$context.height();
         distX = 0;
         distY = 0;
         startX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;

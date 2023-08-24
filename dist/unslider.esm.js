@@ -1559,15 +1559,14 @@ var Unslider = /*#__PURE__*/function () {
     key: "initSwipe",
     value: function initSwipe() {
       var _this7 = this;
-      var width = this.$slides.width();
-      var height = this.$slides.height();
-
       // We don't want to have a tactile swipe in the slider
       // in the fade animation, as it can cause some problems
       // with layout, so we'll just disable it.
       if (this.options.animation !== 'fade') {
         var isHorizontal = this.options.animation === 'horizontal';
         var direction = isHorizontal ? 'left' : 'top';
+        var width = 0;
+        var height = 0;
         var startX = 0;
         var startY = 0;
         var distX = 0;
@@ -1575,6 +1574,8 @@ var Unslider = /*#__PURE__*/function () {
         var moveStart = function moveStart(e) {
           e.preventDefault();
           e.stopPropagation();
+          width = _this7.$context.width();
+          height = _this7.$context.height();
           distX = 0;
           distY = 0;
           startX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
