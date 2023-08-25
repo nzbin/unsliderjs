@@ -90,12 +90,4 @@
       }
     }
   }
-
-  &-swipe {
-    cursor: grab;
-
-    &.#{$namespace}-swiping {
-      cursor: grabbing;
-    }
-  }
 }

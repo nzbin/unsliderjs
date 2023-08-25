@@ -106,6 +106,9 @@ class Unslider {
     // Swipe threshold -
     // lower float for enabling short swipe
     swipeThreshold: 0.2,
+
+    // Whether set "grab" cursor when hover on the slider
+    grabCursor: true,
   };
 
   // Set defaults
@@ -316,7 +319,7 @@ class Unslider {
     // in the fade animation, as it can cause some problems
     // with layout, so we'll just disable it.
     if (this.options.animation !== 'fade') {
-      this.$context.addClass(this.prefix + 'swipe');
+      this.options.grabCursor && this.$context.css('cursor', 'grab');
 
       const isHorizontal = this.options.animation === 'horizontal';
       const direction = isHorizontal ? this.rtl ? 'right' : 'left' : 'top';
@@ -339,7 +342,7 @@ class Unslider {
         startX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
         startY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
 
-        this.$context.addClass(this.prefix + 'swiping');
+        this.options.grabCursor && this.$context.css('cursor', 'grabbing');
 
         $(document).on(TOUCH_MOVE_EVENT, move).on(TOUCH_END_EVENT, moveEnd);
       };
@@ -368,7 +371,7 @@ class Unslider {
           this.$container.animate({ [direction]: -(100 * this.current) + '%' }, this.options.speed / 2);
         }
 
-        this.$context.removeClass(this.prefix + 'swiping');
+        this.options.grabCursor && this.$context.css('cursor', 'grab');
 
         $(document).off(TOUCH_MOVE_EVENT, move).off(TOUCH_END_EVENT, moveEnd);
       };
