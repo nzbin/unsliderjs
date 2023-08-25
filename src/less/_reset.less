@@ -1,7 +1,7 @@
 .unslider {
-  //  Should either be relative or absolute
-  //  as long as it's not static, but we'll
-  //  set it using jQuery
+  // Should either be relative or absolute
+  // as long as it's not static, but we'll
+  // set it using jQuery
   // position: relative;
   overflow: auto;
   margin: 0;
@@ -12,10 +12,14 @@
 
     &.unslider-carousel > li {
       float: left;
+
+      [dir='rtl'] & {
+        float: right;
+      }
     }
   }
 
-  //  Vertical sliders don't float left
+  // Vertical sliders don't float left
   &-vertical {
     > ul {
       height: 100%;
@@ -27,8 +31,8 @@
     }
   }
 
-  //  Fading needs everything to appear on top of
-  //  each other
+  // Fading needs everything to appear on top of
+  // each other
   &-fade {
     position: relative;
 
@@ -50,20 +54,30 @@
   li {
     list-style: none;
 
-    /* Reset any weird spacing */
+    // Reset any weird spacing
     margin: 0;
     padding: 0;
   }
 
   &-arrow {
     position: absolute;
-    left: 20px;
+    left: 0;
     z-index: 2;
     cursor: pointer;
 
+    [dir='rtl'] & {
+      left: auto;
+      right: 0;
+    }
+
     &.next {
       left: auto;
-      right: 20px;
+      right: 0;
+
+      [dir='rtl'] & {
+        right: auto;
+        left: 0;
+      }
     }
   }
 

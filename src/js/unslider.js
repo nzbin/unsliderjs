@@ -132,6 +132,10 @@ class Unslider {
   // In case we're going to use the autoplay
   interval = null;
 
+  // Add RTL support, slide the slider
+  // the other way if the site is right-to-left
+  rtl = false;
+
   constructor(el, options) {
     this.$context = $(el);
 
@@ -140,8 +144,9 @@ class Unslider {
 
   // Get everything set up innit
   init(options) {
-    // Set up our options inside here so we can re-init at
-    // any time
+    this.rtl = this.$context.attr('dir') === 'rtl';
+
+    // Set up our options inside here so we can re-init at any time
     this.options = $.extend({}, this.defaults, options);
 
     // Our elements
@@ -314,7 +319,7 @@ class Unslider {
       this.$context.addClass(this.prefix + 'swipe');
 
       const isHorizontal = this.options.animation === 'horizontal';
-      const direction = isHorizontal ? 'left' : 'top';
+      const direction = isHorizontal ? this.rtl ? 'right' : 'left' : 'top';
 
       let width = 0;
       let height = 0;
@@ -347,14 +352,14 @@ class Unslider {
         distX = endX - startX;
         distY = endY - startY;
 
-        const dist = isHorizontal ? distX : distY;
+        const dist = isHorizontal ? distX * (this.rtl ? -1 : 1) : distY;
         const size = isHorizontal ? width : height;
 
         this.$container.css(direction, -(100 * this.current) + (100 * dist / size) + '%');
       };
 
       const moveEnd = () => {
-        const dist = isHorizontal ? distX : distY;
+        const dist = isHorizontal ? distX * (this.rtl ? -1 : 1) : distY;
         const size = isHorizontal ? width : height;
 
         if ((Math.abs(dist) / size) > this.options.swipeThreshold) {
@@ -500,13 +505,7 @@ class Unslider {
   // Our default animation method, the old-school left-to-right
   // horizontal animation
   animateHorizontal(to) {
-    let prop = 'left';
-
-    // Add RTL support, slide the slider
-    // the other way if the site is right-to-left
-    if (this.$context.attr('dir') === 'rtl') {
-      prop = 'right';
-    }
+    const prop = this.rtl ? 'right' : 'left';
 
     if (this.options.infinite) {
       // So then we need to hide the first slide

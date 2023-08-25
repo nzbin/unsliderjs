@@ -1,7 +1,7 @@
 /*!
  * unsliderjs - v0.0.0
  * A very simple JS slider.
- * https://github.com/nzbin/unsliderjs
+ * https://nzbin.github.io/unsliderjs/
  *
  * Copyright (c) 2023 nzbin
  * Released under MIT License
@@ -1356,6 +1356,9 @@ var Unslider = /*#__PURE__*/function () {
     _defineProperty(this, "eventSuffix", '.' + this.prefix + ~~(Math.random() * 2e3));
     // In case we're going to use the autoplay
     _defineProperty(this, "interval", null);
+    // Add RTL support, slide the slider
+    // the other way if the site is right-to-left
+    _defineProperty(this, "rtl", false);
     // Shortcuts for animating if we don't know what the current
     // index is (i.e back/forward)
     // For moving forward we need to make sure we don't overshoot.
@@ -1382,8 +1385,9 @@ var Unslider = /*#__PURE__*/function () {
     key: "init",
     value: function init(options) {
       var _this2 = this;
-      // Set up our options inside here so we can re-init at
-      // any time
+      this.rtl = this.$context.attr('dir') === 'rtl';
+
+      // Set up our options inside here so we can re-init at any time
       this.options = D.extend({}, this.defaults, options);
 
       // Our elements
@@ -1565,7 +1569,7 @@ var Unslider = /*#__PURE__*/function () {
       if (this.options.animation !== 'fade') {
         this.$context.addClass(this.prefix + 'swipe');
         var isHorizontal = this.options.animation === 'horizontal';
-        var direction = isHorizontal ? 'left' : 'top';
+        var direction = isHorizontal ? this.rtl ? 'right' : 'left' : 'top';
         var width = 0;
         var height = 0;
         var startX = 0;
@@ -1590,12 +1594,12 @@ var Unslider = /*#__PURE__*/function () {
           var endY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
           distX = endX - startX;
           distY = endY - startY;
-          var dist = isHorizontal ? distX : distY;
+          var dist = isHorizontal ? distX * (_this7.rtl ? -1 : 1) : distY;
           var size = isHorizontal ? width : height;
           _this7.$container.css(direction, -(100 * _this7.current) + 100 * dist / size + '%');
         };
         var moveEnd = function moveEnd() {
-          var dist = isHorizontal ? distX : distY;
+          var dist = isHorizontal ? distX * (_this7.rtl ? -1 : 1) : distY;
           var size = isHorizontal ? width : height;
           if (Math.abs(dist) / size > _this7.options.swipeThreshold) {
             _this7[dist < 0 ? 'next' : 'prev']();
@@ -1718,13 +1722,7 @@ var Unslider = /*#__PURE__*/function () {
     // Our default animation method, the old-school left-to-right
     // horizontal animation
     function animateHorizontal(to) {
-      var prop = 'left';
-
-      // Add RTL support, slide the slider
-      // the other way if the site is right-to-left
-      if (this.$context.attr('dir') === 'rtl') {
-        prop = 'right';
-      }
+      var prop = this.rtl ? 'right' : 'left';
       if (this.options.infinite) {
         // So then we need to hide the first slide
         this.$container.css('margin-' + prop, '-100%');

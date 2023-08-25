@@ -1,7 +1,7 @@
 /*!
  * unsliderjs - v0.0.0
  * A very simple JS slider.
- * https://github.com/nzbin/unsliderjs
+ * https://nzbin.github.io/unsliderjs/
  *
  * Copyright (c) 2023 nzbin
  * Released under MIT License
@@ -16,6 +16,9 @@
 }
 .unslider-wrap.unslider-carousel > li {
   float: left;
+}
+[dir=rtl] .unslider-wrap.unslider-carousel > li {
+  float: right;
 }
 .unslider-vertical > ul {
   height: 100%;
@@ -46,13 +49,21 @@
 }
 .unslider-arrow {
   position: absolute;
-  left: 20px;
+  left: 0;
   z-index: 2;
   cursor: pointer;
 }
+[dir=rtl] .unslider-arrow {
+  left: auto;
+  right: 0;
+}
 .unslider-arrow.next {
   left: auto;
-  right: 20px;
+  right: 0;
+}
+[dir=rtl] .unslider-arrow.next {
+  right: auto;
+  left: 0;
 }
 .unslider-nav > ol {
   text-align: center;
