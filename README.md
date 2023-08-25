@@ -171,6 +171,10 @@ var unslider = Unslider.create(".my-slider");
 
   Ratio to trigger swipe to next/previous slide during long swipes.
 
+- **grabCursor** `true`
+
+  Whether set "grab" cursor when hover on the slider.
+
 ## Methods
 
 ```js
