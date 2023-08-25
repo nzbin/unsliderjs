@@ -3,12 +3,9 @@
 // CSS and include that instead to use some of that
 // hardware-accelerated goodness.
 
-// Unslider has navigation styles pre-designed. You can turn it off here.
-$unslider-dot-nav: false !default;
-$unslider-dot-color: #000 !default;
-
-// Unslider has navigation styles pre-designed. You can turn it off here.
-$unslider-transition-function: cubic-bezier(.42, 0, .58, 1) !default;
-
 // Set a namespace for Unslider
-$unslider-namespace: 'unslider' !default;
+$namespace: 'unslider' !default;
+
+// Unslider has navigation styles pre-designed. You can turn it off here.
+$dot-nav: false !default;
+$dot-color: #000 !default;

@@ -1,6 +1,6 @@
 @use './variables' as *;
 
-.#{$unslider-namespace} {
+.#{$namespace} {
   // Should either be relative or absolute as long as it's not static,
   // but we'll set it using jQuery
   // position: relative;
@@ -11,7 +11,7 @@
   &-wrap {
     position: relative;
 
-    &.#{$unslider-namespace}-carousel > li {
+    &.#{$namespace}-carousel > li {
       float: left;
 
       [dir='rtl'] & {
@@ -36,14 +36,14 @@
   &-fade {
     position: relative;
 
-    .#{$unslider-namespace}-wrap li {
+    .#{$namespace}-wrap li {
       position: absolute;
       left: 0;
       top: 0;
       right: 0;
       z-index: 8;
 
-      &.#{$unslider-namespace}-active {
+      &.#{$namespace}-active {
         z-index: 10;
       }
     }
@@ -94,7 +94,7 @@
   &-swipe {
     cursor: grab;
 
-    &.#{$unslider-namespace}-swiping {
+    &.#{$namespace}-swiping {
       cursor: grabbing;
     }
   }
