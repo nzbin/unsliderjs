@@ -1345,6 +1345,8 @@
         // Whether set "grab" cursor when hover on the slider
         grabCursor: true
       });
+      // Store original DOM
+      _defineProperty(this, "$el", null);
       // Set defaults
       _defineProperty(this, "$context", null);
       _defineProperty(this, "options", {});
@@ -1384,6 +1386,7 @@
       _defineProperty(this, "prev", function () {
         return _this.animate(_this.current - 1, 'prev');
       });
+      this.$el = D(el).clone();
       this.$context = D(el);
       this.init(options);
     }
@@ -1491,6 +1494,7 @@
       key: "stop",
       value: function stop() {
         clearTimeout(this.interval);
+        this.interval = null;
         return this;
       }
 
@@ -1646,6 +1650,18 @@
           // if item = first, return "last"
           _this8.$slides[pos[~~!index]]()));
         });
+      }
+
+      // Remove the slider and revert the original DOM
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        this.$parent.after(this.$el);
+        this.$parent.remove();
+        this.destroyKeys();
+        if (this.interval != null) {
+          this.stop();
+        }
       }
 
       // Remove any trace of arrows
@@ -1856,7 +1872,7 @@
             _this10.$context.trigger(_this10._ + ':moved');
           };
         }
-        return $el._move(obj, speed || this.options.speed, this.options.easing, callback);
+        return $el.animate(obj, speed || this.options.speed, this.options.easing, callback);
       }
     }], [{
       key: "create",
@@ -1882,10 +1898,6 @@
   _defineProperty(Unslider, "store", Object.create(null));
   D.fn._active = function (className) {
     return this.addClass(className).siblings().removeClass(className);
-  };
-  D.fn._move = function () {
-    // this.stop(true, true);
-    return D.fn[D.fn.velocity ? 'velocity' : 'animate'].apply(this, arguments);
   };
 
   // The equivalent to PHP's ucfirst(). Take the first

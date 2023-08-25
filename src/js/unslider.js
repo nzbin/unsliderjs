@@ -111,6 +111,9 @@ class Unslider {
     grabCursor: true,
   };
 
+  // Store original DOM
+  $el = null;
+
   // Set defaults
   $context = null;
   options = {};
@@ -140,6 +143,7 @@ class Unslider {
   rtl = false;
 
   constructor(el, options) {
+    this.$el = $(el).clone();
     this.$context = $(el);
 
     this.init(options);
@@ -242,7 +246,7 @@ class Unslider {
   // and force stop the slider if needed
   stop() {
     clearTimeout(this.interval);
-
+    this.interval = null;
     return this;
   }
 
@@ -408,6 +412,16 @@ class Unslider {
         )
       );
     });
+  }
+
+  // Remove the slider and revert the original DOM
+  destroy() {
+    this.$parent.after(this.$el);
+    this.$parent.remove();
+    this.destroyKeys();
+    if (this.interval != null) {
+      this.stop();
+    }
   }
 
   // Remove any trace of arrows
@@ -622,7 +636,7 @@ class Unslider {
       };
     }
 
-    return $el._move(obj, speed || this.options.speed, this.options.easing, callback);
+    return $el.animate(obj, speed || this.options.speed, this.options.easing, callback);
   }
 }
 
@@ -631,11 +645,6 @@ class Unslider {
 // something that might be used more than once.
 $.fn._active = function (className) {
   return this.addClass(className).siblings().removeClass(className);
-};
-
-$.fn._move = function () {
-  // this.stop(true, true);
-  return $.fn[$.fn.velocity ? 'velocity' : 'animate'].apply(this, arguments);
 };
 
 // The equivalent to PHP's ucfirst(). Take the first

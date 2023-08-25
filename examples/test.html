@@ -19,6 +19,9 @@
       </ul>
     </div>
 
+    <button onclick="init()">init</button>
+    <button onclick="destroy()">destroy</button>
+
     <div class="myslider2">
       <ul>
         <li>
@@ -42,9 +45,20 @@
       infinite: true
     });
 
-    new Unslider('.myslider2', {
-      animateHeight: true,
-    });
+    var s = null;
+
+    function init() {
+      s = new Unslider('.myslider2', {
+        animateHeight: true,
+        autoplay: true
+      });
+      console.log(s)
+    }
+
+    function destroy() {
+      s.destroy();
+      console.log(s)
+    }
   </script>
 </body>
 
