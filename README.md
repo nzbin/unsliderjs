@@ -211,6 +211,10 @@ slider.methodName("arguments", "go", "here");
 
   Stop the slider moving itself between slides. Will stop any auto-playing.
 
+- **destroy()**
+
+  Remove the slider and revert the original DOM.
+
 - **initKeys()**
 
   Manually add keyboard shortcut support. Can be used after `destroyKeys` to restore keyboard shortcut support, or with `{keys: false}` in the options object to add support later on.
