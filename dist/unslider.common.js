@@ -1280,7 +1280,7 @@ var Unslider = /*#__PURE__*/function () {
     var _this = this;
     _classCallCheck(this, Unslider);
     // Create an Unslider reference we can use everywhere
-    _defineProperty(this, "_", 'unslider');
+    _defineProperty(this, "_", Unslider.namespace);
     // Store our default options in here
     // Everything will be overwritten by the jQuery plugin though
     _defineProperty(this, "defaults", {
@@ -1374,6 +1374,7 @@ var Unslider = /*#__PURE__*/function () {
     // Add RTL support, slide the slider
     // the other way if the site is right-to-left
     _defineProperty(this, "rtl", false);
+    // The slider instance key in store
     _defineProperty(this, "uid", null);
     // Shortcuts for animating if we don't know what the current
     // index is (i.e back/forward)
@@ -1892,11 +1893,11 @@ var Unslider = /*#__PURE__*/function () {
     value:
     // Make sure the Unslider can only be initialized once
     function create(el, options) {
-      var id = D(el).attr('data-unslider');
+      var id = D(el).attr('data-' + Unslider.namespace);
       if (id != null) {
         return Unslider.store[id];
       }
-      D(el).attr('data-unslider', uid);
+      D(el).attr('data-' + Unslider.namespace, uid);
       var slider = Unslider.store[uid] = new Unslider(el, options);
       uid++;
       return slider;
@@ -1908,6 +1909,7 @@ var Unslider = /*#__PURE__*/function () {
 }(); // They're both just helpful types of shorthand for
 // anything that might take too long to write out or
 // something that might be used more than once.
+_defineProperty(Unslider, "namespace", 'unslider');
 _defineProperty(Unslider, "store", Object.create(null));
 D.fn._active = function (className) {
   return this.addClass(className).siblings().removeClass(className);

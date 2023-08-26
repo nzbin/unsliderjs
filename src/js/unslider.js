@@ -13,13 +13,15 @@ const TOUCH_END_EVENT = supportTouch() ? 'touchend' : 'mouseup';
 let uid = 1;
 
 class Unslider {
+  static namespace = 'unslider';
+
   // Make sure the Unslider can only be initialized once
   static create(el, options) {
-    const id = $(el).attr('data-unslider');
+    const id = $(el).attr('data-' + Unslider.namespace);
     if (id != null) {
       return Unslider.store[id];
     }
-    $(el).attr('data-unslider', uid);
+    $(el).attr('data-' + Unslider.namespace, uid);
     const slider = Unslider.store[uid] = new Unslider(el, options);
     uid++;
     return slider;
@@ -29,7 +31,7 @@ class Unslider {
   static store = Object.create(null);
 
   // Create an Unslider reference we can use everywhere
-  _ = 'unslider';
+  _ = Unslider.namespace;
 
   // Store our default options in here
   // Everything will be overwritten by the jQuery plugin though
@@ -142,6 +144,7 @@ class Unslider {
   // the other way if the site is right-to-left
   rtl = false;
 
+  // The slider instance key in store
   uid = null;
 
   constructor(el, options) {
