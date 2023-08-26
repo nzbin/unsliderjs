@@ -7,6 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unslider Test</title>
   <link href="../dist/unslider.css" rel="stylesheet">
+  <style>
+    .unslider {
+      position: relative;
+    }
+    .unslider > div {
+      border: 1px solid;
+    }
+  </style>
 </head>
 
 <body>
@@ -39,25 +47,24 @@
 
   <script src="../dist/unslider.js"></script>
   <script>
-    new Unslider('.myslider', {
+    Unslider.create('.myslider', {
       animation: 'vertical',
       autoplay: true,
-      infinite: true
+      infinite: true,
     });
 
-    var s = null;
+    var slider = null;
 
     function init() {
-      s = new Unslider('.myslider2', {
+      slider = Unslider.create('.myslider2', {
         animateHeight: true,
-        autoplay: true
       });
-      console.log(s)
+      console.log(slider)
     }
 
     function destroy() {
-      s.destroy();
-      console.log(s)
+      slider && slider.destroy();
+      console.log(slider)
     }
   </script>
 </body>

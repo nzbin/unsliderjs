@@ -15,9 +15,9 @@ let uid = 1;
 class Unslider {
   // Make sure the Unslider can only be initialized once
   static create(el, options) {
-    const sid = $(el).attr('data-unslider');
-    if (sid != null) {
-      return Unslider.store[sid];
+    const id = $(el).attr('data-unslider');
+    if (id != null) {
+      return Unslider.store[id];
     }
     $(el).attr('data-unslider', uid);
     const slider = Unslider.store[uid] = new Unslider(el, options);
@@ -142,8 +142,10 @@ class Unslider {
   // the other way if the site is right-to-left
   rtl = false;
 
+  uid = null;
+
   constructor(el, options) {
-    this.$el = $(el).clone();
+    this.$el = $(el).clone().removeAttr('data-' + this._);
     this.$context = $(el);
 
     this.init(options);
@@ -151,6 +153,7 @@ class Unslider {
 
   // Get everything set up innit
   init(options) {
+    this.uid = this.$context.attr('data-' + this._);
     this.rtl = this.$context.attr('dir') === 'rtl';
 
     // Set up our options inside here so we can re-init at any time
@@ -416,11 +419,21 @@ class Unslider {
 
   // Remove the slider and revert the original DOM
   destroy() {
-    this.$parent.after(this.$el);
-    this.$parent.remove();
-    this.destroyKeys();
-    if (this.interval != null) {
-      this.stop();
+    if (this.$el) {
+      this.$parent.after(this.$el);
+      this.$parent.remove();
+
+      this.destroyKeys();
+
+      if (this.interval != null) {
+        this.stop();
+      }
+
+      if (this.uid != null) {
+        delete Unslider.store[this.uid];
+      }
+
+      this.$el = null;
     }
   }
 

@@ -24,6 +24,7 @@ import {
   parent,
   position,
   remove,
+  removeAttr,
   removeClass,
   siblings,
   trigger,
@@ -39,6 +40,7 @@ const methods = {
 
 const fnMethods = {
   attr,
+  removeAttr,
   css,
   find,
   filter,
