@@ -650,6 +650,14 @@
       });
   }
 
+  function removeAttr(name) {
+    return this.each(function () {
+      this.nodeType === 1 && name.split(' ').forEach(function (attribute) {
+        setAttribute(this, attribute);
+      }, this);
+    });
+  }
+
   function wrap(structure) {
     var func = isFunction(structure);
     if (this[0] && !func)
@@ -1232,6 +1240,7 @@
   };
   var fnMethods = {
     attr: attr,
+    removeAttr: removeAttr,
     css: css,
     find: find,
     filter: filter,
@@ -1369,6 +1378,7 @@
       // Add RTL support, slide the slider
       // the other way if the site is right-to-left
       _defineProperty(this, "rtl", false);
+      _defineProperty(this, "uid", null);
       // Shortcuts for animating if we don't know what the current
       // index is (i.e back/forward)
       // For moving forward we need to make sure we don't overshoot.
@@ -1386,7 +1396,7 @@
       _defineProperty(this, "prev", function () {
         return _this.animate(_this.current - 1, 'prev');
       });
-      this.$el = D(el).clone();
+      this.$el = D(el).clone().removeAttr('data-' + this._);
       this.$context = D(el);
       this.init(options);
     }
@@ -1396,6 +1406,7 @@
       key: "init",
       value: function init(options) {
         var _this2 = this;
+        this.uid = this.$context.attr('data-' + this._);
         this.rtl = this.$context.attr('dir') === 'rtl';
 
         // Set up our options inside here so we can re-init at any time
@@ -1656,11 +1667,17 @@
     }, {
       key: "destroy",
       value: function destroy() {
-        this.$parent.after(this.$el);
-        this.$parent.remove();
-        this.destroyKeys();
-        if (this.interval != null) {
-          this.stop();
+        if (this.$el) {
+          this.$parent.after(this.$el);
+          this.$parent.remove();
+          this.destroyKeys();
+          if (this.interval != null) {
+            this.stop();
+          }
+          if (this.uid != null) {
+            delete Unslider.store[this.uid];
+          }
+          this.$el = null;
         }
       }
 
@@ -1879,9 +1896,9 @@
       value:
       // Make sure the Unslider can only be initialized once
       function create(el, options) {
-        var sid = D(el).attr('data-unslider');
-        if (sid != null) {
-          return Unslider.store[sid];
+        var id = D(el).attr('data-unslider');
+        if (id != null) {
+          return Unslider.store[id];
         }
         D(el).attr('data-unslider', uid);
         var slider = Unslider.store[uid] = new Unslider(el, options);
