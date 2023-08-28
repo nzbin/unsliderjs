@@ -7,15 +7,16 @@
  * Released under MIT License
  */
 .unslider-nav > ol li {
-  width: 6px;
-  height: 6px;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
   margin: 0 4px;
-  background: transparent;
+  background-color: transparent;
   border-radius: 5px;
   overflow: hidden;
   text-indent: -999em;
   border: 2px solid #000;
-  transition: color 0.2s, background 0.2s;
+  transition: color 0.2s, background-color 0.2s;
   cursor: pointer;
 }
 .unslider-nav > ol li.unslider-active {

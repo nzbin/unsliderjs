@@ -1,6 +1,6 @@
-@use './variables' as *;
+@use './variables';
 
-.#{$namespace} {
+.#{variables.$namespace} {
   // Should either be relative or absolute as long as it's not static,
   // but we'll set it using jQuery
   // position: relative;
@@ -11,7 +11,7 @@
   &-wrap {
     position: relative;
 
-    &.#{$namespace}-carousel > li {
+    &.#{variables.$namespace}-carousel > li {
       float: left;
 
       [dir='rtl'] & {
@@ -36,14 +36,14 @@
   &-fade {
     position: relative;
 
-    .#{$namespace}-wrap li {
+    .#{variables.$namespace}-wrap li {
       position: absolute;
       left: 0;
       top: 0;
       right: 0;
       z-index: 8;
 
-      &.#{$namespace}-active {
+      &.#{variables.$namespace}-active {
         z-index: 10;
       }
     }
