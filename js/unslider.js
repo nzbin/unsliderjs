@@ -1286,14 +1286,13 @@
       // Create an Unslider reference we can use everywhere
       _defineProperty(this, "_", Unslider.namespace);
       // Store our default options in here
-      // Everything will be overwritten by the jQuery plugin though
       _defineProperty(this, "defaults", {
-        // Should the slider move on its own or only when
-        // you interact with the nav/arrows?
+        // Whether to enable infinite loop
+        infinite: false,
+        // Should the slider move on its own or only when you interact with the nav/arrows?
         // Only accepts boolean true/false.
         autoplay: false,
-        // 3 second delay between slides moving, pass
-        // as a number in milliseconds.
+        // The time delay between slides moving, pass as a number in milliseconds.
         delay: 3000,
         // Animation speed in millseconds
         speed: 750,
@@ -1302,24 +1301,21 @@
         // [.42, 0, .58, 1],
 
         // Does it support keyboard arrows?
-        // Can pass either true or false -
-        // or an object with the keycodes, like so:
+        // Can pass either true or false - or an object with the keycodes, like so:
         // {
         //   prev: 37,
         //   next: 39
         // }
-        // You can call any internal method name
-        // before the keycode and it'll be called.
+        // You can call any internal method name before the keycode and it'll be called.
         keys: {
           prev: 37,
           next: 39
         },
-        // Do you want to generate clickable navigation
-        // to skip to each slide? Accepts boolean true/false or
-        // a callback function per item to generate.
+        // Do you want to generate clickable navigation to skip to each slide?
+        // Accepts boolean true/false or a callback function per item to generate.
         nav: true,
         // Should there be left/right arrows to go back/forth?
-        //  -> This isn't keyboard support.
+        // -> This isn't keyboard support.
         // Either set true/false, or an object with the HTML
         // elements for each arrow like below:
         arrows: {
@@ -1328,28 +1324,24 @@
         },
         // How should Unslider animate?
         // It can do one of the following types:
-        // "fade": each slide fades in to each other
-        // "horizontal": each slide moves from left to right
-        // "vertical": each slide moves from top to bottom
+        //  "fade": each slide fades in to each other
+        //  "horizontal": each slide moves from left to right
+        //  "vertical": each slide moves from top to bottom
         animation: 'horizontal',
-        // If you don't want to use a list to display your slides,
-        // you can change it here. Not recommended and you'll need
-        // to adjust the CSS accordingly.
+        // If you don't want to use a list to display your slides, you can change it here.
+        // Not recommended and you'll need to adjust the CSS accordingly.
         selectors: {
           container: 'ul',
           slides: 'li'
         },
-        // Do you want to animate the heights of each slide as
-        // it moves
+        // Do you want to animate the heights of each slide as it moves
         animateHeight: false,
         // Active class for the nav
         activeClass: this._ + '-active',
         // Have swipe support?
-        // You can set this here with a boolean and always use
-        // initSwipe/destroySwipe later on.
+        // You can set this here with a boolean and always use initSwipe/destroySwipe later on.
         swipe: true,
-        // Swipe threshold -
-        // lower float for enabling short swipe
+        // Ratio to trigger swipe to next/previous slide during long swipes.
         swipeThreshold: 0.2,
         // Whether set "grab" cursor when hover on the slider
         grabCursor: true
@@ -1360,8 +1352,7 @@
       _defineProperty(this, "$context", null);
       _defineProperty(this, "options", {});
       // Leave our elements blank for now
-      // Since they get changed by the options, we'll need to
-      // set them in the init method.
+      // Since they get changed by the options, we'll need to set them in the init method.
       _defineProperty(this, "$parent", null);
       _defineProperty(this, "$container", null);
       _defineProperty(this, "$slides", null);
@@ -1375,13 +1366,11 @@
       _defineProperty(this, "eventSuffix", '.' + this.prefix + ~~(Math.random() * 2e3));
       // In case we're going to use the autoplay
       _defineProperty(this, "interval", null);
-      // Add RTL support, slide the slider
-      // the other way if the site is right-to-left
+      // Add RTL support, slide the slider the other way if the site is right-to-left
       _defineProperty(this, "rtl", false);
-      // The slider instance key in store
+      // The key of slider instance in store
       _defineProperty(this, "uid", null);
-      // Shortcuts for animating if we don't know what the current
-      // index is (i.e back/forward)
+      // Shortcuts for animating if we don't know what the current index is (i.e back/forward)
       // For moving forward we need to make sure we don't overshoot.
       _defineProperty(this, "next", function () {
         var target = _this.current + 1;
@@ -1431,8 +1420,7 @@
           this.initSwipe();
         }
 
-        // If autoplay is set to true, call this.start()
-        // to start calling our timeouts
+        // If autoplay is set to true, call `this.start()` to start calling our timeouts
         this.options.autoplay && this.start();
 
         // We should be able to recalculate slides at will
@@ -1500,8 +1488,7 @@
         return this;
       }
 
-      // And pause our timeouts
-      // and force stop the slider if needed
+      // And pause our timeouts and force stop the slider if needed
     }, {
       key: "stop",
       value: function stop() {
@@ -1549,8 +1536,7 @@
         });
       }
 
-      // Set up our left-right arrow navigation
-      // (Not keyboard arrows, prev/next buttons)
+      // Set up our left-right arrow navigation (Not keyboard arrows, prev/next buttons)
     }, {
       key: "initArrows",
       value: function initArrows() {
@@ -1638,8 +1624,7 @@
       }
 
       // Infinite scrolling is a massive pain in the arse
-      // so we need to create a whole bloody function to set
-      // it up. Argh.
+      // so we need to create a whole bloody function to set it up. Argh.
     }, {
       key: "initInfinite",
       value: function initInfinite() {
@@ -1700,7 +1685,6 @@
       }
 
       // Unset the keyboard navigation
-      // Remove the handler
     }, {
       key: "destroyKeys",
       value: function destroyKeys() {
@@ -1728,10 +1712,8 @@
       key: "animate",
       value: function animate(to, dir) {
         // Animation shortcuts
-        // Instead of passing a number index, we can now
-        // use .data('unslider').animate('last');
-        // or .unslider('animate:last')
-        // to go to the very last slide
+        // Instead of passing a number index, we can now use
+        // `slider.animate('last')` to go to the very last slide
         if (to === 'first') to = 0;
         if (to === 'last') to = this.total;
 
@@ -1761,8 +1743,7 @@
     }, {
       key: "animateHorizontal",
       value:
-      // Our default animation method, the old-school left-to-right
-      // horizontal animation
+      // Our default animation method, the old-school left-to-right horizontal animation
       function animateHorizontal(to) {
         var prop = this.rtl ? 'right' : 'left';
         if (this.options.infinite) {
@@ -1773,16 +1754,14 @@
       }
 
       // The same animation methods, but vertical support
-      // RTL doesn't affect the vertical direction so we
-      // can just call as is
+      // RTL doesn't affect the vertical direction so we can just call as is
     }, {
       key: "animateVertical",
       value: function animateVertical(to) {
         this.options.animateHeight = true;
 
-        // Normal infinite CSS fix doesn't work for
-        // vertical animation so we need to manually set it
-        // with pixels. Ah well.
+        // Normal infinite CSS fix doesn't work for vertical animation
+        // so we need to manually set it with pixels. Ah well.
         if (this.options.infinite) {
           this.$container.css('margin-top', -this.$slides.get(0).offsetHeight);
         }
@@ -1799,7 +1778,7 @@
         var _this9 = this;
         // If we want to change the height of the slider
         // to match the current slide, you can set
-        // {animateHeight: true}
+        // { animateHeight: true }
         this.animateHeight(to);
 
         // For infinite sliding we add a dummy slide at the end and start
@@ -1855,7 +1834,7 @@
       value: function animateFade(to) {
         // If we want to change the height of the slider
         // to match the current slide, you can set
-        // {animateHeight: true}
+        // { animateHeight: true }
         this.animateHeight(to);
         var $active = this.$slides.eq(to).addClass(this.options.activeClass);
 
@@ -1874,7 +1853,7 @@
       value: function animateHeight(to) {
         // If we want to change the height of the slider
         // to match the current slide, you can set
-        // {animateHeight: true}
+        // { animateHeight: true }
         if (this.options.animateHeight) {
           this._move(this.$context, {
             height: this.$slides.eq(to).get(0).offsetHeight
