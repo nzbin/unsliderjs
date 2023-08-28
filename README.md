@@ -26,8 +26,8 @@ $ npm install unsliderjs --save
 ## Usage
 
 ```js
-// You can pass either CSS selector or HTML element for the first parameter
-Unslider.create(selector_or_element, options);
+// You can pass either HTML element or CSS selector for the first parameter
+Unslider.create(element[, options]);
 ```
 
 ### Include files
@@ -61,6 +61,10 @@ var unslider = Unslider.create(".my-slider");
 ```
 
 ## Options
+
+- **infinite** `false`
+
+  Whether to enable infinite loop
 
 - **autoplay** `false`
 
