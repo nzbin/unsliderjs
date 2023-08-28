@@ -1,9 +1,9 @@
 /*!
- * unsliderjs - v0.0.0
+ * unsliderjs - v0.1.0
  * A very simple JS slider.
  * https://nzbin.github.io/unsliderjs/
  *
- * Copyright (c) 2023 nzbin
+ * Copyright 2023-present nzbin
  * Released under MIT License
  */.unslider-nav>ol li{box-sizing:border-box;width:10px;height:10px;margin:0 4px;background-color:rgba(0,0,0,0);border-radius:5px;overflow:hidden;text-indent:-999em;border:2px solid #000;transition:color .2s,background-color .2s;cursor:pointer}.unslider-nav>ol li.unslider-active{background:#000;cursor:default}
 

@@ -8,7 +8,7 @@ const banner = String.raw`/*!
  * ${pkg.description}
  * ${pkg.homepage}
  *
- * Copyright (c) 2023 ${pkg.author}
+ * Copyright 2023-present ${pkg.author}
  * Released under ${pkg.license} License
  */
 `;
