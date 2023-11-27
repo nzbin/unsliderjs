@@ -31,7 +31,7 @@ import {
   width,
   wrap,
   wrapAll,
-} from 'domq.js/src/domq.modular';
+} from 'domq.js';
 
 const methods = {
   isFunction,
