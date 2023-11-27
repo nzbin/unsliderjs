@@ -2,9 +2,7 @@
   "name": "unsliderjs",
   "version": "0.1.0",
   "description": "A very simple JS slider.",
-  "main": "dist/unslider.common.js",
-  "module": "dist/unslider.esm.js",
-  "browser": "dist/unslider.js",
+  "main": "src/js/unslider.js",
   "types": "types/index.d.ts",
   "files": [
     "dist",
