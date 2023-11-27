@@ -1,6 +1,6 @@
 {
   "name": "unsliderjs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A very simple JS slider.",
   "main": "src/js/unslider.js",
   "types": "types/index.d.ts",

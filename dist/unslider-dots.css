@@ -1,5 +1,5 @@
 /*!
- * unsliderjs - v0.1.0
+ * unsliderjs - v0.2.0
  * A very simple JS slider.
  * https://nzbin.github.io/unsliderjs/
  *
